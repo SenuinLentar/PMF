@@ -19,24 +19,43 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import model.ChunksCreator;
 
+/**
+ * Class Graphique in which we fill and display the graphique
+ */
 public class Graphique extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * the variable used for the graphique 
+	 * Two variables for two "lines"
+	 * One variable for the chart
+	 * One array (two dimension) to stock the values of the temperature inside and the humidity
+	 * Create the array to stok the values
+	 * 
+	 */
 	private XYSeries temperature, humidite;
 	private XYSeriesCollection graphique;
 	private float[][] data = new float[3][10];
-
 	private ChunksCreator chunksCreator;
-
 	private int x = 0, time = 0;
 
+	
+	/**
+	 * Contructor Graphique which uses
+	 * @param chunksCreator
+	 */
 	public Graphique(ChunksCreator chunksCreator) {
 		this.chunksCreator = chunksCreator;
 	}
 
+	
+	/**
+	 * Methode to instantiate the JFrame of the graph
+	 * 
+	 */
 	public void initUI() {
 
 		XYDataset dataset = createDataset();
@@ -50,9 +69,16 @@ public class Graphique extends JFrame {
 		this.setDefaultCloseOperation(Graphique.HIDE_ON_CLOSE);
 	}
 
+	
+	/**
+	 * Method that create the Dataset and
+	 * @return graphique
+	 * It fills the 2 variables (temperature and humidity) with the data stored in the array (Chunck)
+	 * Then the 2 variables are added to the XYSeriesCollection
+	 */
 	public XYDataset createDataset() {
 
-		temperature = new XYSeries("temperature (°C)");
+		temperature = new XYSeries("température (°C)");
 		humidite = new XYSeries("humidité");
 
 		this.temperature.clear();
@@ -72,6 +98,12 @@ public class Graphique extends JFrame {
 		return graphique;
 	}
 
+	/**
+	 * Methode that update the array using
+	 * @param chunks
+	 * It allows the graph to refresh by removing the first value of the array 
+	 * and by shifting all the values in the case-1
+	 */
 	public void updateTable(String[] chunks) {
 		if (x < 10) {
 			data[0][x] = Float.parseFloat(this.chunksCreator.getChunks()[1]);
@@ -91,6 +123,11 @@ public class Graphique extends JFrame {
 		}
 	}
 
+	/**
+	 * Methode that create the chart using
+	 * @param dataset
+	 * @return chart
+	 */
 	private JFreeChart createChart(final XYDataset dataset) {
 
 		JFreeChart chart = ChartFactory.createXYLineChart("Courbe température et humidité", "temps (en seconde)", "",
@@ -121,6 +158,10 @@ public class Graphique extends JFrame {
 		return chart;
 	}
 
+	/**
+	 * getter for the data
+	 * @return data
+	 */
 	public float[][] getData() {
 		return data;
 	}

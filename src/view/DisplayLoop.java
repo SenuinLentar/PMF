@@ -9,25 +9,26 @@ public class DisplayLoop {
 	private ChunksCreator chunksCreator;
 	private DewPoint dewPoint;
 	private Graphique graphique;
-	private Fenetre fenetre;
 	private PopUp popUp;
+	private DataStorage dataStorage;
 
 	/**
 	 * Constructor of the DisplayLoop class.
-	 * 
+	 *
 	 * @param chunksCreator
 	 * @param dewPoint
 	 * @param graphique
 	 * @param fenetre
 	 * @param popUp
+	 * @param dataStorage
 	 */
-	public DisplayLoop(ChunksCreator chunksCreator, DewPoint dewPoint, Graphique graphique, Fenetre fenetre,
-			PopUp popUp) {
+	public DisplayLoop(ChunksCreator chunksCreator, DewPoint dewPoint, Graphique graphique,
+			PopUp popUp, DataStorage dataStorage) {
 		this.chunksCreator = chunksCreator;
 		this.dewPoint = dewPoint;
 		this.graphique = graphique;
-		this.fenetre = fenetre;
 		this.popUp = popUp;
+		this.dataStorage = dataStorage;
 		System.out.println("Température extérieure : \t Température intérieure : \t Humidité : \t Consigne :");
 	}
 
@@ -52,10 +53,10 @@ public class DisplayLoop {
 	 * Refresh the display of the data on the window.
 	 */
 	public void refreshData() {
-		this.fenetre.getConteneurFenetre().getValeurHumiditeLabel().setText(this.chunksCreator.getChunks()[2]);
-		this.fenetre.getConteneurFenetre().getValeurTemperatureExterieurLabel()
+		this.dataStorage.getValeurHumiditeLabel().setText(this.chunksCreator.getChunks()[2]);
+		this.dataStorage.getValeurTemperatureExterieurLabel()
 				.setText(this.chunksCreator.getChunks()[0]);
-		this.fenetre.getConteneurFenetre().getValeurTemperatureInterieurLabel()
+		this.dataStorage.getValeurTemperatureInterieurLabel()
 				.setText(this.chunksCreator.getChunks()[1]);
 	}
 	
@@ -91,7 +92,7 @@ public class DisplayLoop {
 	 * Check if there is condensation formation, if yes, it display a new windows with a message.
 	 */
 	public void dewPointTest() {
-		if (Double.parseDouble(this.chunksCreator.getChunks()[0]) > Double.parseDouble(this.chunksCreator.getChunks()[1])) {
+		if (this.dewPoint.getDewPointTemp() > Double.parseDouble(this.chunksCreator.getChunks()[1])) {
 			// Double.parseDouble(this.chunksCreator.getChunks()[0]) >
 			// Double.parseDouble(this.chunksCreator.getChunks()[1])
 			// this.dewPoint.getDewPointTemp() >
