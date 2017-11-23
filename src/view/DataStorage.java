@@ -28,6 +28,7 @@ public class DataStorage {
 	private JLabel valeurTemperatureExterieurLabel;
 	private JLabel valeurHumiditeLabel;
 
+
 	/**
 	 * getter of the text
 	 * 
@@ -235,4 +236,6 @@ public class DataStorage {
 	public void setValeurHumiditeLabel(JLabel valeurHumiditeLabel) {
 		this.valeurHumiditeLabel = valeurHumiditeLabel;
 	}
+
+
 }

@@ -11,6 +11,9 @@ public class DisplayLoop {
 	private Graphique graphique;
 	private PopUp popUp;
 	private DataStorage dataStorage;
+	private Fenetre fenetre;
+	
+	//private ProprieteImage proprieteImage;
 
 	/**
 	 * Constructor of the DisplayLoop class.
@@ -23,13 +26,15 @@ public class DisplayLoop {
 	 * @param dataStorage
 	 */
 	public DisplayLoop(ChunksCreator chunksCreator, DewPoint dewPoint, Graphique graphique,
-			PopUp popUp, DataStorage dataStorage) {
+			PopUp popUp, DataStorage dataStorage, Fenetre fenetre) {
+		
+		this.fenetre = fenetre;
 		this.chunksCreator = chunksCreator;
 		this.dewPoint = dewPoint;
 		this.graphique = graphique;
 		this.popUp = popUp;
 		this.dataStorage = dataStorage;
-		System.out.println("Température extérieure : \t Température intérieure : \t Humidité : \t Consigne :");
+		System.out.println("TempÃ©rature extÃ©rieure : \t TempÃ©rature intÃ©rieure : \t HumiditÃ© : \t Consigne :");
 	}
 
 	/**
@@ -39,6 +44,7 @@ public class DisplayLoop {
 	 */
 	public void Loop() throws InterruptedException {
 		while (true) {
+			this.updateThermometerImage();
 			this.refreshData();
 			this.dewPointCalculation();
 			this.updateGraphic();
@@ -109,5 +115,9 @@ public class DisplayLoop {
 			// this.graphique.getData()[0][9] - this.graphique.getData()[0][8] > 5
 			this.popUp.porte();
 		}
+	}
+	
+	public void updateThermometerImage () {
+		this.fenetre.getConteneurFenetre().getProprieteImage().updateImage();
 	}
 }

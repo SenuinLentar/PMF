@@ -2,6 +2,7 @@ package view;
 
 import java.io.IOException;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.ChunksCreator;
@@ -10,6 +11,10 @@ import model.Serial;
 public class ConteneurFenetre extends JPanel{
 
 
+	
+	ProprieteImage proprieteImage;
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,7 +30,8 @@ public class ConteneurFenetre extends JPanel{
 		this.setLayout(null);
 		new ProprieteLabel(dataStorage, this);
 		new ProprieteBouton(dataStorage, graphique, serial, this);
-		new ProprieteImage(dataStorage, this);
+		proprieteImage = new ProprieteImage(dataStorage, this);
+	
 	
 		/**
 		 * the values for the inside and outside temperature are filled with the values collected with arduino (thermistance+DHT)
@@ -34,4 +40,13 @@ public class ConteneurFenetre extends JPanel{
 //		dataStorage.setTemperatureInterieure(Float.parseFloat(chunkCreator.getChunks()[1]));
 //		dataStorage.setHumiditeActuelle(Float.parseFloat(chunkCreator.getChunks()[2]));
 	}
+
+	public ProprieteImage getProprieteImage() {
+		return proprieteImage;
+	}
+
+	public void setProprieteImage(ProprieteImage proprieteImage) {
+		this.proprieteImage = proprieteImage;
+	}
+
 }

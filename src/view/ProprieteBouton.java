@@ -99,10 +99,10 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 			
 			if (this.dataStorage.getConsigne() <= 19f) {
 				this.dataStorage.setConsigne(this.dataStorage.getConsigne() + 1f);
-				this.dataStorage.getValeurConsigneLabel().setText(String.valueOf(this.dataStorage.getConsigne()) + "캜");	
+				this.dataStorage.getValeurConsigneLabel().setText(String.valueOf(this.dataStorage.getConsigne()) + "째C");	
 			} 
 			else {
-				this.dataStorage.getValeurConsigneLabel().setText("20.0캜");
+				this.dataStorage.getValeurConsigneLabel().setText("20.0째C");
 				this.dataStorage.setConsigne(20.00f);
 			}	
 		}  
@@ -111,32 +111,32 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 			
 			if (this.dataStorage.getConsigne() >= 11f) {
 				this.dataStorage.setConsigne(this.dataStorage.getConsigne() - 1f);
-				this.dataStorage.getValeurConsigneLabel().setText(String.valueOf(this.dataStorage.getConsigne()) + "캜");			
+				this.dataStorage.getValeurConsigneLabel().setText(String.valueOf(this.dataStorage.getConsigne()) + "째C");			
 			} 
 			else {
-				this.dataStorage.getValeurConsigneLabel().setText("10.0캜");
+				this.dataStorage.getValeurConsigneLabel().setText("10.0째C");
 				this.dataStorage.setConsigne(10.00f);
 			}		
 		} 	
 	
 		
 		else if (source == this.dataStorage.getTexte()) {
-			// valeurConsigneLabel.setText(texte.getText() + "캜");
+		
 			float a = Float.parseFloat(this.dataStorage.getTexte().getText());
 			
 			if (a > 20f) {
-//				this.dataStorage.getValeurConsigneLabel().setText("20캜");
 				this.dataStorage.setConsigne(20.00f);
-			} else if (a < 10f) {
-//				this.dataStorage.getValeurConsigneLabel().setText("10캜");
+			} 
+			else if (a < 10f) {
 				this.dataStorage.setConsigne(10.00f);
-			} else if ((a >= 10f) && (a <= 20f)) {
-//				this.dataStorage.getValeurConsigneLabel().setText(a + "캜");
+			} 
+			else if ((a >= 10f) && (a <= 20f)) {
 				this.dataStorage.setConsigne(a);
-			} else {
+			} 
+			else {
 				System.out.println("nope");
 			}
-			this.dataStorage.getValeurConsigneLabel().setText(this.dataStorage.getConsigne() + "캜");
+			this.dataStorage.getValeurConsigneLabel().setText(this.dataStorage.getConsigne() + "째C");
 		} 
 		
 		else if (source == boutonGraphique) {

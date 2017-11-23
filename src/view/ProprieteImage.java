@@ -16,6 +16,9 @@ public class ProprieteImage extends JPanel {
 	private JLabel thermometreExterieurImage;
 	private JLabel thermometreInterieurImage;
 
+	private DataStorage dataStorage;
+	private ConteneurFenetre conteneurFenetre;
+	
 	/**
 	 * The contructor ProprieteImage needs
 	 * 
@@ -24,6 +27,9 @@ public class ProprieteImage extends JPanel {
 	 */
 	public ProprieteImage(DataStorage dataStorage, ConteneurFenetre conteneurFenetre) {
 
+		this.dataStorage = dataStorage;
+		this.conteneurFenetre = conteneurFenetre;
+		
 		/**
 		 * the image used for the humidity
 		 */
@@ -45,27 +51,7 @@ public class ProprieteImage extends JPanel {
 		this.thermometreExterieurImage.setBounds(20, 450, 100, 100);
 		conteneurFenetre.add(thermometreExterieurImage);
 
-		/**
-		 * the image used for the inside temperature 3 images for the 3 different cases
-		 * 
-		 */
-		if (dataStorage.getTemperatureInterieure() <= 10.0) {
-			thermometreInterieurImage = new JLabel(new ImageIcon("image/low.png"));
-			this.thermometreInterieurImage.setBounds(30, 220, 60, 100);
-			conteneurFenetre.add(thermometreInterieurImage);
-		} else if ((dataStorage.getTemperatureInterieure() > 10.0)
-				&& (dataStorage.getTemperatureInterieure() <= 13.0)) {
-			thermometreInterieurImage = new JLabel(new ImageIcon("image/great.png"));
-			this.thermometreInterieurImage.setBounds(30, 220, 60, 150);
-			conteneurFenetre.add(thermometreInterieurImage);
-		} else if (dataStorage.getTemperatureInterieure() > 13.0) {
-			thermometreInterieurImage = new JLabel(new ImageIcon("image/hight.png"));
-			this.thermometreInterieurImage.setBounds(30, 220, 60, 150);
-			conteneurFenetre.add(thermometreInterieurImage);
-		} else {
-			System.out.println("nop"); // FAIRE RESTE 10-13 14-17 18-20
-		}
-
+		updateImage();
 		/**
 		 * the image used for the background
 		 */
@@ -73,6 +59,38 @@ public class ProprieteImage extends JPanel {
 		this.fondImage.setSize(900, 700);
 		conteneurFenetre.add(fondImage);
 
+		
+	}
+	
+	/**
+	 * Methode used to update the image for the ouside  temperature 
+	 * @param dataStorage
+	 * @param conteneurFenetre
+	 */
+	public void updateImage () {
+
+		/**
+		 * the image used for the inside temperature 3 images for the 3 different cases
+		 * 
+		 */
+		if (this.dataStorage.getTemperatureInterieure() <= 13.0) {
+			thermometreInterieurImage = new JLabel(new ImageIcon("image/low.png"));
+		} 
+		
+		else if ((this.dataStorage.getTemperatureInterieure() > 13.0) && (dataStorage.getTemperatureInterieure() <= 17.0)) {
+			thermometreInterieurImage = new JLabel(new ImageIcon("image/great.png"));
+		} 
+		
+		else if (this.dataStorage.getTemperatureInterieure() > 17.0) {
+			thermometreInterieurImage = new JLabel(new ImageIcon("image/hight.png"));
+		} 
+		
+		else {
+			System.out.println("nop");
+		}
+		
+		this.thermometreInterieurImage.setBounds(30, 220, 60, 100);
+		conteneurFenetre.add(thermometreInterieurImage);
 	}
 
 }
