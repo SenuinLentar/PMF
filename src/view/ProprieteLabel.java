@@ -16,6 +16,8 @@ public class ProprieteLabel extends JPanel {
 	private JLabel consigneLabel;
 	private JLabel temperatureInterieurLabel;
 	private JLabel temperatureExterieurLabel;
+	
+	private DataStorage dataStorage;
 
 	/**
 	 * Properties of all the label used in the interface. It uses :
@@ -25,6 +27,8 @@ public class ProprieteLabel extends JPanel {
 	 */
 	public ProprieteLabel(DataStorage dataStorage, ConteneurFenetre conteneurFenetre) {
 
+		this.dataStorage = dataStorage;
+		
 		/**
 		 * The label for the title of the frame
 		 */
@@ -85,7 +89,7 @@ public class ProprieteLabel extends JPanel {
 		dataStorage.getValeurTemperatureInterieurLabel().setForeground(Color.WHITE);
 		dataStorage.getValeurTemperatureInterieurLabel().setFont(dataStorage.getTemperature());
 		conteneurFenetre.add(dataStorage.getValeurTemperatureInterieurLabel());
-
+		System.out.println(dataStorage.getTemperatureInterieure());
 		/**
 		 * the label that displays the value of the outside temperature
 		 */
@@ -116,5 +120,13 @@ public class ProprieteLabel extends JPanel {
 		dataStorage.getValeurHumiditeLabel().setForeground(Color.WHITE);
 		dataStorage.getValeurHumiditeLabel().setFont(dataStorage.getTemperature());
 		conteneurFenetre.add(dataStorage.getValeurHumiditeLabel());
+	}
+	
+	public void updateLabels() {
+		this.dataStorage.getValeurHumiditeLabel().setText(String.valueOf(dataStorage.getHumiditeActuelle()));
+		this.dataStorage.getValeurTemperatureExterieurLabel()
+				.setText(String.valueOf(dataStorage.getTemperatureExterieure()));
+		this.dataStorage.getValeurTemperatureInterieurLabel()
+				.setText(String.valueOf(dataStorage.getTemperatureInterieure()));
 	}
 }

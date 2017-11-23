@@ -12,8 +12,8 @@ public class ConteneurFenetre extends JPanel{
 
 
 	
-	ProprieteImage proprieteImage;
-	
+	private ProprieteImage proprieteImage;
+	private ProprieteLabel proprieteLabel;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class ConteneurFenetre extends JPanel{
 	public ConteneurFenetre(Graphique graphique, ChunksCreator chunkCreator, Serial serial, DataStorage dataStorage) {
 		
 		this.setLayout(null);
-		new ProprieteLabel(dataStorage, this);
+		proprieteLabel = new ProprieteLabel(dataStorage, this);
 		new ProprieteBouton(dataStorage, graphique, serial, this);
 		proprieteImage = new ProprieteImage(dataStorage, this);
 	
@@ -44,9 +44,9 @@ public class ConteneurFenetre extends JPanel{
 	public ProprieteImage getProprieteImage() {
 		return proprieteImage;
 	}
-
-	public void setProprieteImage(ProprieteImage proprieteImage) {
-		this.proprieteImage = proprieteImage;
+	
+	public ProprieteLabel getProprieteLabel() {
+		return proprieteLabel;
 	}
 
 }

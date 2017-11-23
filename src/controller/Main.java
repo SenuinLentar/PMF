@@ -7,7 +7,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		ChunksCreator chunksCreator = new ChunksCreator();
-		DataStorage dataStorage = new DataStorage();
+		DataStorage dataStorage = new DataStorage(chunksCreator);
 		CommPort commPort = new CommPort();
 				
 		Serial serial = new Serial(commPort.getCommPort(), chunksCreator);

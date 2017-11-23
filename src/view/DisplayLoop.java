@@ -44,13 +44,14 @@ public class DisplayLoop {
 	 */
 	public void Loop() throws InterruptedException {
 		while (true) {
-			this.updateThermometerImage();
+			
 			this.refreshData();
 			this.dewPointCalculation();
 			this.updateGraphicData();
 //			this.printData();
 			this.dewPointTest();
 			this.doorOpenTest();
+			this.updateThermometerImage();
 			Thread.sleep(1000);
 		}
 	}
@@ -59,11 +60,13 @@ public class DisplayLoop {
 	 * Refresh the display of the data on the window.
 	 */
 	public void refreshData() {
-		this.dataStorage.getValeurHumiditeLabel().setText(this.chunksCreator.getChunks()[2]);
-		this.dataStorage.getValeurTemperatureExterieurLabel()
-				.setText(this.chunksCreator.getChunks()[0]);
-		this.dataStorage.getValeurTemperatureInterieurLabel()
-				.setText(this.chunksCreator.getChunks()[1]);
+		this.dataStorage.updateDatas();
+		this.fenetre.getConteneurFenetre().getProprieteLabel().updateLabels();
+//		this.dataStorage.getValeurHumiditeLabel().setText(this.chunksCreator.getChunks()[2]);
+//		this.dataStorage.getValeurTemperatureExterieurLabel()
+//				.setText(this.chunksCreator.getChunks()[0]);
+//		this.dataStorage.getValeurTemperatureInterieurLabel()
+//				.setText(this.chunksCreator.getChunks()[1]);
 	}
 	
 	/**

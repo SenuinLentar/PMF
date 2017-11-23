@@ -5,6 +5,8 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import model.ChunksCreator;
+
 public class DataStorage {
 
 	/**
@@ -27,7 +29,21 @@ public class DataStorage {
 	private JLabel valeurTemperatureInterieurLabel;
 	private JLabel valeurTemperatureExterieurLabel;
 	private JLabel valeurHumiditeLabel;
+	
+	private ChunksCreator chunksCreator;
+	
 
+	public DataStorage(ChunksCreator chunksCreator) {
+		this.chunksCreator = chunksCreator;
+		
+	}
+	
+	public void updateDatas() {
+		this.temperatureExterieure = Float.parseFloat(chunksCreator.getChunks()[0]);
+		this.temperatureInterieure = Float.parseFloat(chunksCreator.getChunks()[1]);
+		this.humiditeActuelle = Float.parseFloat(chunksCreator.getChunks()[2]);
+		//this.consigne = Float.parseFloat(chunksCreator.getChunks()[3]);
+	}
 
 	/**
 	 * getter of the text

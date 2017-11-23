@@ -74,23 +74,28 @@ public class ProprieteImage extends JPanel {
 		 * 
 		 */
 		if (this.dataStorage.getTemperatureInterieure() <= 13.0) {
-			thermometreInterieurImage = new JLabel(new ImageIcon("image/low.png"));
+			this.thermometreInterieurImage = new JLabel(new ImageIcon("image/low.png"));
+			System.out.println(this.dataStorage.getTemperatureInterieure());
 		} 
 		
 		else if ((this.dataStorage.getTemperatureInterieure() > 13.0) && (dataStorage.getTemperatureInterieure() <= 17.0)) {
-			thermometreInterieurImage = new JLabel(new ImageIcon("image/great.png"));
+			this.thermometreInterieurImage = new JLabel(new ImageIcon("image/great.png"));
+			System.out.println(this.dataStorage.getTemperatureInterieure());
 		} 
 		
 		else if (this.dataStorage.getTemperatureInterieure() > 17.0) {
-			thermometreInterieurImage = new JLabel(new ImageIcon("image/hight.png"));
+			this.thermometreInterieurImage = new JLabel(new ImageIcon("image/hight.png"));
+			this.thermometreInterieurImage.setBounds(30, 220, 60, 100);
+			this.conteneurFenetre.add(thermometreInterieurImage);
+			System.out.println(this.dataStorage.getTemperatureInterieure());
 		} 
 		
 		else {
-			System.out.println("nop");
+			System.out.println("nop4");
 		}
 		
 		this.thermometreInterieurImage.setBounds(30, 220, 60, 100);
-		conteneurFenetre.add(thermometreInterieurImage);
+		this.conteneurFenetre.add(thermometreInterieurImage);
 	}
 
 }
