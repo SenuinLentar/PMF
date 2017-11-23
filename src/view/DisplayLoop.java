@@ -41,8 +41,8 @@ public class DisplayLoop {
 		while (true) {
 			this.refreshData();
 			this.dewPointCalculation();
-			this.updateGraphic();
-			this.printData();
+			this.updateGraphicData();
+//			this.printData();
 			this.dewPointTest();
 			this.doorOpenTest();
 			Thread.sleep(1000);
@@ -70,9 +70,10 @@ public class DisplayLoop {
 	/**
 	 * Update the graphic.
 	 */
-	public void updateGraphic() {
+	public void updateGraphicData() {
 		this.graphique.updateTable(this.chunksCreator.getChunks());
-		this.graphique.initUI();
+//		this.graphique.initUI();
+		this.graphique.updateGraphic();
 	}
 	
 	/**

@@ -29,38 +29,38 @@ public class Graphique extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * the variable used for the graphique 
-	 * Two variables for two "lines"
-	 * One variable for the chart
-	 * One array (two dimension) to stock the values of the temperature inside and the humidity
-	 * Create the array to stok the values
+	 * the variable used for the graphique Two variables for two "lines" One
+	 * variable for the chart One array (two dimension) to stock the values of the
+	 * temperature inside and the humidity Create the array to stok the values
 	 * 
 	 */
 	private XYSeries temperature, humidite;
 	private XYSeriesCollection graphique;
+	private JFreeChart chart;
+	private XYDataset dataset;
+	private ChartPanel chartPanel;
 	private float[][] data = new float[3][10];
 	private ChunksCreator chunksCreator;
 	private int x = 0, time = 0;
 
-	
 	/**
 	 * Contructor Graphique which uses
+	 * 
 	 * @param chunksCreator
 	 */
 	public Graphique(ChunksCreator chunksCreator) {
 		this.chunksCreator = chunksCreator;
+		this.graphique = new XYSeriesCollection();
 	}
 
-	
 	/**
 	 * Methode to instantiate the JFrame of the graph
 	 * 
 	 */
 	public void initUI() {
-
-		XYDataset dataset = createDataset();
-		JFreeChart chart = createChart(dataset);
-		ChartPanel chartPanel = new ChartPanel(chart);
+		this.dataset = createDataset();
+		this.chart = createChart(dataset);
+		this.chartPanel = new ChartPanel(chart);
 		chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 		chartPanel.setBackground(Color.white);
 		add(chartPanel);
@@ -69,12 +69,18 @@ public class Graphique extends JFrame {
 		this.setDefaultCloseOperation(Graphique.HIDE_ON_CLOSE);
 	}
 
-	
+	public void updateGraphic() {
+		this.dataset = createDataset();
+		this.chart = createChart(dataset);
+		//this.chartPanel = new ChartPanel(chart);
+	}
+
 	/**
 	 * Method that create the Dataset and
-	 * @return graphique
-	 * It fills the 2 variables (temperature and humidity) with the data stored in the array (Chunck)
-	 * Then the 2 variables are added to the XYSeriesCollection
+	 * 
+	 * @return graphique It fills the 2 variables (temperature and humidity) with
+	 *         the data stored in the array (Chunck) Then the 2 variables are added
+	 *         to the XYSeriesCollection
 	 */
 	public XYDataset createDataset() {
 
@@ -83,26 +89,27 @@ public class Graphique extends JFrame {
 
 		this.temperature.clear();
 		this.humidite.clear();
+		this.graphique.removeAllSeries();
+		
 		for (int i = 0; i < 9; i++) {
 			this.temperature.add(data[2][i], data[0][i]);
 			this.humidite.add(data[2][i], data[1][i]);
 		}
 
-		graphique = new XYSeriesCollection();
+		this.graphique.addSeries(temperature);
+		this.graphique.addSeries(humidite);
 
-		graphique.addSeries(temperature);
-		graphique.addSeries(humidite);
-		
 		time++;
-		
+
 		return graphique;
 	}
 
 	/**
 	 * Methode that update the array using
+	 * 
 	 * @param chunks
-	 * It allows the graph to refresh by removing the first value of the array 
-	 * and by shifting all the values in the case-1
+	 *            It allows the graph to refresh by removing the first value of the
+	 *            array and by shifting all the values in the case-1
 	 */
 	public void updateTable(String[] chunks) {
 		if (x < 10) {
@@ -125,6 +132,7 @@ public class Graphique extends JFrame {
 
 	/**
 	 * Methode that create the chart using
+	 * 
 	 * @param dataset
 	 * @return chart
 	 */
@@ -160,6 +168,7 @@ public class Graphique extends JFrame {
 
 	/**
 	 * getter for the data
+	 * 
 	 * @return data
 	 */
 	public float[][] getData() {
