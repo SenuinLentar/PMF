@@ -65,7 +65,7 @@ public class Graphique extends JFrame {
 		chartPanel.setBackground(Color.white);
 		add(chartPanel);
 		pack();
-		setLocation(1000, 100);
+		setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(Graphique.HIDE_ON_CLOSE);
 	}
 
@@ -84,8 +84,8 @@ public class Graphique extends JFrame {
 	 */
 	public XYDataset createDataset() {
 
-		temperature = new XYSeries("température (°C)");
-		humidite = new XYSeries("humidité");
+		temperature = new XYSeries("tempÃ©rature (Â°C)");
+		humidite = new XYSeries("humiditÃ©");
 
 		this.temperature.clear();
 		this.humidite.clear();
@@ -138,7 +138,7 @@ public class Graphique extends JFrame {
 	 */
 	private JFreeChart createChart(final XYDataset dataset) {
 
-		JFreeChart chart = ChartFactory.createXYLineChart("Courbe température et humidité", "temps (en seconde)", "",
+		JFreeChart chart = ChartFactory.createXYLineChart("Courbe tempÃ©rature et humiditÃ©", "temps (en seconde)", "",
 				dataset, PlotOrientation.VERTICAL, true, true, false);
 
 		XYPlot plot = chart.getXYPlot();
