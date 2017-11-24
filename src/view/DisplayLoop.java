@@ -62,11 +62,6 @@ public class DisplayLoop {
 	public void refreshData() {
 		this.dataStorage.updateDatas();
 		this.fenetre.getConteneurFenetre().getProprieteLabel().updateLabels();
-//		this.dataStorage.getValeurHumiditeLabel().setText(this.chunksCreator.getChunks()[2]);
-//		this.dataStorage.getValeurTemperatureExterieurLabel()
-//				.setText(this.chunksCreator.getChunks()[0]);
-//		this.dataStorage.getValeurTemperatureInterieurLabel()
-//				.setText(this.chunksCreator.getChunks()[1]);
 	}
 	
 	/**
