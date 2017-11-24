@@ -11,7 +11,7 @@ public class DataStorage {
 
 	/**
 	 * We declare all the variables that will be used in the different classes All
-	 * the fonts used The inside and ouside temperature, the humidity, and the order
+	 * the fonts used The inside and outside temperature, the humidity, and the order
 	 * The variable used to stock the text entered by the user
 	 */
 
