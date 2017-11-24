@@ -42,12 +42,13 @@ public class DisplayLoop {
 		while (true) {
 			
 			this.refreshData();
+			this.updateThermometerImage();
 			this.dewPointCalculation();
 			this.updateGraphicData();
 //			this.printData();
 			this.dewPointTest();
 			this.doorOpenTest();
-			this.updateThermometerImage();
+			
 			Thread.sleep(1000);
 		}
 	}
