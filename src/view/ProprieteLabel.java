@@ -44,7 +44,7 @@ public class ProprieteLabel extends JPanel {
 		 */
 		this.temperatureInterieurLabel = new JLabel();
 		this.temperatureInterieurLabel.setBounds(20, 150, 400, 50);
-		this.temperatureInterieurLabel.setText("TempÃ©rature intÃ©rieure");
+		this.temperatureInterieurLabel.setText("Température intérieure");
 		this.temperatureInterieurLabel.setForeground(Color.WHITE);
 		this.temperatureInterieurLabel.setFont(dataStorage.getF());
 		conteneurFenetre.add(temperatureInterieurLabel);
@@ -54,7 +54,7 @@ public class ProprieteLabel extends JPanel {
 		 */
 		this.temperatureExterieurLabel = new JLabel();
 		this.temperatureExterieurLabel.setBounds(20, 370, 400, 50);
-		this.temperatureExterieurLabel.setText("TempÃ©rature extÃ©rieure");
+		this.temperatureExterieurLabel.setText("Température extérieure");
 		this.temperatureExterieurLabel.setForeground(Color.WHITE);
 		this.temperatureExterieurLabel.setFont(dataStorage.getF());
 		conteneurFenetre.add(temperatureExterieurLabel);
@@ -74,7 +74,7 @@ public class ProprieteLabel extends JPanel {
 		 */
 		this.humiditeLabel = new JLabel();
 		this.humiditeLabel.setBounds(500, 355, 300, 80);
-		this.humiditeLabel.setText("HumiditÃ©");
+		this.humiditeLabel.setText("Humidité");
 		this.humiditeLabel.setForeground(Color.WHITE);
 		this.humiditeLabel.setFont(dataStorage.getF());
 		conteneurFenetre.add(humiditeLabel);
@@ -85,7 +85,7 @@ public class ProprieteLabel extends JPanel {
 		dataStorage.setValeurTemperatureInterieurLabel(new JLabel());
 		dataStorage.getValeurTemperatureInterieurLabel().setBounds(160, 250, 400, 70);
 		dataStorage.getValeurTemperatureInterieurLabel()
-				.setText(String.valueOf(dataStorage.getTemperatureInterieure()) + "Â°C");
+				.setText(String.valueOf(dataStorage.getTemperatureInterieure()) + "°C");
 		dataStorage.getValeurTemperatureInterieurLabel().setForeground(Color.WHITE);
 		dataStorage.getValeurTemperatureInterieurLabel().setFont(dataStorage.getTemperature());
 		conteneurFenetre.add(dataStorage.getValeurTemperatureInterieurLabel());
@@ -96,7 +96,7 @@ public class ProprieteLabel extends JPanel {
 		dataStorage.setValeurTemperatureExterieurLabel(new JLabel());
 		dataStorage.getValeurTemperatureExterieurLabel().setBounds(160, 400, 300, 200);
 		dataStorage.getValeurTemperatureExterieurLabel()
-				.setText(String.valueOf(dataStorage.getTemperatureExterieure()) + "Â°C");
+				.setText(String.valueOf(dataStorage.getTemperatureExterieure()) + "°C");
 		dataStorage.getValeurTemperatureExterieurLabel().setForeground(Color.WHITE);
 		dataStorage.getValeurTemperatureExterieurLabel().setFont(dataStorage.getTemperature());
 		conteneurFenetre.add(dataStorage.getValeurTemperatureExterieurLabel());
@@ -106,7 +106,7 @@ public class ProprieteLabel extends JPanel {
 		 */
 		dataStorage.setValeurConsigneLabel(new JLabel());
 		dataStorage.getValeurConsigneLabel().setBounds(500, 250, 400, 70);
-		dataStorage.getValeurConsigneLabel().setText(String.valueOf(dataStorage.getConsigne()) + "Â°C");
+		dataStorage.getValeurConsigneLabel().setText(String.valueOf(dataStorage.getConsigne()) + "°C");
 		dataStorage.getValeurConsigneLabel().setForeground(Color.WHITE);
 		dataStorage.getValeurConsigneLabel().setFont(dataStorage.getTitre());
 		conteneurFenetre.add(dataStorage.getValeurConsigneLabel());

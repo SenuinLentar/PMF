@@ -84,9 +84,9 @@ public class Graphique extends JFrame {
 	 */
 	public XYDataset createDataset() {
 
-		temperatureInside = new XYSeries("tempÃ©rature intÃ©rieure(Â°C)");
-		humidite = new XYSeries("humiditÃ©");
-		temperatureOutside = new XYSeries("empÃ©rature extÃ©rieure(Â°C)");
+		temperatureInside = new XYSeries("température intérieure(°C)");
+		humidite = new XYSeries("humidité");
+		temperatureOutside = new XYSeries("empérature extérieure(°C)");
 
 		this.temperatureInside.clear();
 		this.temperatureOutside.clear();
@@ -145,7 +145,7 @@ public class Graphique extends JFrame {
 	 */
 	private JFreeChart createChart(final XYDataset dataset) {
 
-		JFreeChart chart = ChartFactory.createXYLineChart("Courbe tempÃ©ratures et humiditÃ©", "temps (en seconde)", "",
+		JFreeChart chart = ChartFactory.createXYLineChart("Courbe températures et humidité", "temps (en seconde)", "",
 				dataset, PlotOrientation.VERTICAL, true, true, false);
 
 		XYPlot plot = chart.getXYPlot();
