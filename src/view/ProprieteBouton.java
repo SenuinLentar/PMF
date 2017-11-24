@@ -53,7 +53,7 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 		boutonPlus = new JButton();
 		this.boutonPlus.setIcon(new ImageIcon("image/plus.png"));
 		this.boutonPlus.setBounds(680, 160, 80, 80);
-		this.boutonPlus.setBorderPainted(false);
+		this.boutonPlus.setBorderPainted(true);
 		this.boutonPlus.addActionListener(this);
 		conteneurFenetre.add(boutonPlus);
 
@@ -64,7 +64,7 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 		this.boutonMoins.setIcon(new ImageIcon("image/moins.png"));
 		this.boutonMoins.setBounds(780, 160, 80, 80);
 		this.boutonMoins.setBorderPainted(false);
-		// this.boutonMoins.setBackground(null);
+		 this.boutonMoins.setBackground(null);
 		this.boutonMoins.addActionListener(this);
 		conteneurFenetre.add(boutonMoins);
 
@@ -103,7 +103,7 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 				this.dataStorage.getValeurConsigneLabel()
 						.setText(String.valueOf(this.dataStorage.getConsigne()) + "°C");
 			} else {
-				this.dataStorage.getValeurConsigneLabel().setText("20.0Â°C");
+				this.dataStorage.getValeurConsigneLabel().setText("20.0°C");
 				this.dataStorage.setConsigne(20.00f);
 			}
 		}

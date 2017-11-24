@@ -25,10 +25,12 @@ public class ConteneurFenetre extends JPanel{
 	public ConteneurFenetre(Serial serial, DataStorage dataStorage) {
 		
 		this.setLayout(null);
-		proprieteLabel = new ProprieteLabel(dataStorage, this);
+		
 		proprieteBouton = new ProprieteBouton(dataStorage, serial, this);
+		proprieteLabel = new ProprieteLabel(dataStorage, this);
 		proprieteImage = new ProprieteImage(dataStorage, this);
-	
+		
+		
 	
 		/**
 		 * the values for the inside and outside temperature are filled with the values collected with arduino (thermistance+DHT)

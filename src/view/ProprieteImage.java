@@ -90,12 +90,12 @@ public class ProprieteImage extends JPanel {
 			
 		} 
 		
-		else if ((this.dataStorage.getTemperatureInterieure() > 13.0) && (dataStorage.getTemperatureInterieure() <= 20.0)) {
+		else if ((this.dataStorage.getTemperatureInterieure() > 13.0) && (dataStorage.getTemperatureInterieure() <= 17.0)) {
 			thermometreInterieurIcon = new ImageIcon("image/great.png");
 			this.thermometreInterieurImage.setIcon(thermometreInterieurIcon);
 		} 
 		
-		else if (this.dataStorage.getTemperatureInterieure() > 20.0) {
+		else if (this.dataStorage.getTemperatureInterieure() > 17.0) {
 			thermometreInterieurIcon = new ImageIcon("image/hight.png");
 			this.thermometreInterieurImage.setIcon(thermometreInterieurIcon);
 
