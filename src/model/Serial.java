@@ -8,6 +8,8 @@ import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
+import view.DataStorage;
+
 import java.util.Enumeration;
 import java.util.TooManyListenersException;
 
@@ -16,7 +18,7 @@ public class Serial implements SerialPortEventListener {
 	private static SerialPort serialPort;
 	private static BufferedReader input;
 	private static OutputStream output;
-	private ChunksCreator chunksCreator;
+	private DataStorage dataStorage;
 
 	private static final int TIME_OUT = 2000;
 	private static final int DATA_RATE = 9600;
@@ -28,8 +30,8 @@ public class Serial implements SerialPortEventListener {
 	 * @param chunksCreator
 	 * @throws Exception
 	 */
-	public Serial(String commPort, ChunksCreator chunksCreator) throws Exception {
-		this.chunksCreator = chunksCreator;
+	public Serial(String commPort, DataStorage dataStorage) throws Exception {
+		this.dataStorage = dataStorage;
 		String PORT_NAMES[] = { commPort };
 		this.connection(PORT_NAMES);
 	}
@@ -116,7 +118,7 @@ public class Serial implements SerialPortEventListener {
 				String inputLine = null;
 				if (input.ready()) {
 					inputLine = input.readLine();
-					this.chunksCreator.setChunks(inputLine.split("/"));
+					this.dataStorage.setArray(inputLine.split("/"));
 
 					// System.out.println(chunks[0] + " \t " + chunks[1] + " \t ");
 					// System.out.println(this.chunksCreator.getChunks()[0]);

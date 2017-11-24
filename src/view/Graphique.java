@@ -17,8 +17,6 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import model.ChunksCreator;
-
 /**
  * Class Graphique in which we fill and display the graphique
  */
@@ -40,7 +38,7 @@ public class Graphique extends JFrame {
 	private XYDataset dataset;
 	private ChartPanel chartPanel;
 	private float[][] data = new float[4][10];
-	private ChunksCreator chunksCreator;
+	private DataStorage dataStorage;
 	private int x = 0, time = 0;
 
 	/**
@@ -48,8 +46,8 @@ public class Graphique extends JFrame {
 	 * 
 	 * @param chunksCreator
 	 */
-	public Graphique(ChunksCreator chunksCreator) {
-		this.chunksCreator = chunksCreator;
+	public Graphique(DataStorage dataStorage) {
+		this.dataStorage = dataStorage;
 		this.graphique = new XYSeriesCollection();
 	}
 
@@ -117,9 +115,9 @@ public class Graphique extends JFrame {
 	 */
 	public void updateTable(String[] chunks) {
 		if (x < 10) {
-			data[0][x] = Float.parseFloat(this.chunksCreator.getChunks()[1]);
-			data[1][x] = Float.parseFloat(this.chunksCreator.getChunks()[2]);
-			data[2][x] = Float.parseFloat(this.chunksCreator.getChunks()[0]);
+			data[0][x] = Float.parseFloat(this.dataStorage.getArray()[1]);
+			data[1][x] = Float.parseFloat(this.dataStorage.getArray()[2]);
+			data[2][x] = Float.parseFloat(this.dataStorage.getArray()[0]);
 			data[3][x] = time;
 			x++;
 		} else {
@@ -129,9 +127,9 @@ public class Graphique extends JFrame {
 				data[2][i] = data[2][i + 1];
 				data[3][i] = data[3][i + 1];
 			}
-			data[0][9] = Float.parseFloat(this.chunksCreator.getChunks()[1]);
-			data[1][9] = Float.parseFloat(this.chunksCreator.getChunks()[2]);
-			data[2][9] = Float.parseFloat(this.chunksCreator.getChunks()[0]);
+			data[0][9] = Float.parseFloat(this.dataStorage.getArray()[1]);
+			data[1][9] = Float.parseFloat(this.dataStorage.getArray()[2]);
+			data[2][9] = Float.parseFloat(this.dataStorage.getArray()[0]);
 			data[3][9] = time;
 			time++;
 		}

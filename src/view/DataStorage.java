@@ -5,8 +5,6 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import model.ChunksCreator;
-
 public class DataStorage {
 
 	/**
@@ -30,19 +28,21 @@ public class DataStorage {
 	private JLabel valeurTemperatureExterieurLabel;
 	private JLabel valeurHumiditeLabel;
 	
-	private ChunksCreator chunksCreator;
-	
+	private String[] array = new String[4];
 
-	public DataStorage(ChunksCreator chunksCreator) {
-		this.chunksCreator = chunksCreator;
+	public DataStorage() {
+		
+		this.array[0] = "0";
+		this.array[1] = "1";
+		this.array[2] = "2";
+		this.array[3] = "10";
 		
 	}
 	
 	public void updateDatas() {
-		this.temperatureExterieure = Float.parseFloat(chunksCreator.getChunks()[0]);
-		this.temperatureInterieure = Float.parseFloat(chunksCreator.getChunks()[1]);
-		this.humiditeActuelle = Float.parseFloat(chunksCreator.getChunks()[2]);
-		//this.consigne = Float.parseFloat(chunksCreator.getChunks()[3]);
+		this.temperatureExterieure = Float.parseFloat(this.array[0]);
+		this.temperatureInterieure = Float.parseFloat(this.array[1]);
+		this.humiditeActuelle = Float.parseFloat(this.array[2]);
 	}
 
 	/**
@@ -253,5 +253,21 @@ public class DataStorage {
 		this.valeurHumiditeLabel = valeurHumiditeLabel;
 	}
 
+	/**
+	 * The getter of chunks.
+	 * 
+	 * @return chunks
+	 */
+	public String[] getArray() {
+		return array;
+	}
 
+	/**
+	 * The setter of chunks.
+	 * 
+	 * @param string
+	 */
+	public void setArray(String[] string) {
+		this.array = string;
+	}
 }

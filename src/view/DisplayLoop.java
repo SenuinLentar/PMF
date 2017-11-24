@@ -2,11 +2,8 @@ package view;
 
 import controller.DewPoint;
 
-import model.ChunksCreator;
-
 public class DisplayLoop {
 
-	private ChunksCreator chunksCreator;
 	private DewPoint dewPoint;
 	private Graphique graphique;
 	private PopUp popUp;
@@ -25,16 +22,15 @@ public class DisplayLoop {
 	 * @param popUp
 	 * @param dataStorage
 	 */
-	public DisplayLoop(ChunksCreator chunksCreator, DewPoint dewPoint, Graphique graphique,
+	public DisplayLoop(DewPoint dewPoint, Graphique graphique,
 			PopUp popUp, DataStorage dataStorage, Fenetre fenetre) {
 		
 		this.fenetre = fenetre;
-		this.chunksCreator = chunksCreator;
 		this.dewPoint = dewPoint;
 		this.graphique = graphique;
 		this.popUp = popUp;
 		this.dataStorage = dataStorage;
-		System.out.println("Température extérieure : \t Température intérieure : \t Humidité : \t Consigne :");
+//		System.out.println("Température extérieure : \t Température intérieure : \t Humidité : \t Consigne :");
 	}
 
 	/**
@@ -68,14 +64,14 @@ public class DisplayLoop {
 	 * Calculate the dew point.
 	 */
 	public void dewPointCalculation () {
-		this.dewPoint.dewPointTemp(this.chunksCreator.getChunks()[1], this.chunksCreator.getChunks()[2]);
+		this.dewPoint.dewPointTemp(this.dataStorage.getArray()[1], this.dataStorage.getArray()[2]);
 	}
 	
 	/**
 	 * Update the graphic.
 	 */
 	public void updateGraphicData() {
-		this.graphique.updateTable(this.chunksCreator.getChunks());
+		this.graphique.updateTable(this.dataStorage.getArray());
 //		this.graphique.initUI();
 		this.graphique.updateGraphic();
 	}
@@ -85,11 +81,8 @@ public class DisplayLoop {
 	 */
 	public void printData() {
 		for(int i = 0; i<4; i++) {
-			System.out.println(this.chunksCreator.getChunks()[i] + "\t\t\t");
+			System.out.println(this.dataStorage.getArray()[i] + "\t\t\t");
 		}
-//		
-//		System.out.println("\t" + this.chunksCreator.getChunks()[0] + "\t\t\t\t" + this.chunksCreator.getChunks()[1]
-//				+ "\t\t\t " + this.chunksCreator.getChunks()[2] + "\t\t" + this.chunksCreator.getChunks()[3]);
 		System.out.println(dewPoint.getDewPointTemp());
 	}
 	
@@ -97,11 +90,11 @@ public class DisplayLoop {
 	 * Check if there is condensation formation, if yes, it display a new windows with a message.
 	 */
 	public void dewPointTest() {
-		if (this.dewPoint.getDewPointTemp() > Double.parseDouble(this.chunksCreator.getChunks()[1])) {
-			// Double.parseDouble(this.chunksCreator.getChunks()[0]) >
-			// Double.parseDouble(this.chunksCreator.getChunks()[1])
+		if (this.dewPoint.getDewPointTemp() > Double.parseDouble(this.dataStorage.getArray()[1])) {
+			// Double.parseDouble(this.chunksCreator.getArray()[0]) >
+			// Double.parseDouble(this.chunksCreator.getArray()[1])
 			// this.dewPoint.getDewPointTemp() >
-			// Double.parseDouble(this.chunksCreator.getChunks()[1])
+			// Double.parseDouble(this.chunksCreator.getArray()[1])
 			this.popUp.condensation();
 		}
 	}

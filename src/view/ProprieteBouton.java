@@ -25,25 +25,26 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 
 	private DataStorage dataStorage;
 	private Graphique graphique;
+
 	private Serial serial;
 
 	/**
 	 * the constructor needs
-	 *       
+	 * 
 	 * @param dataStorage
 	 * @param graphique
 	 * @param serial
 	 * @param conteneurFenetre
-	 * 						in order to create the buttons
+	 *            in order to create the buttons
 	 */
-	public ProprieteBouton(DataStorage dataStorage, Graphique graphique, Serial serial,
-			ConteneurFenetre conteneurFenetre) {
+	public ProprieteBouton(DataStorage dataStorage, Serial serial, ConteneurFenetre conteneurFenetre) {
+
+		graphique = new Graphique(dataStorage);
 
 		/**
 		 * WE call the consttructor of dataStorage, graphique & serial
 		 */
 		this.dataStorage = dataStorage;
-		this.graphique = graphique;
 		this.serial = serial;
 
 		/**
@@ -94,58 +95,54 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
-		
+
 		if (source == boutonPlus) {
-			
+
 			if (this.dataStorage.getConsigne() <= 19f) {
 				this.dataStorage.setConsigne(this.dataStorage.getConsigne() + 1f);
-				this.dataStorage.getValeurConsigneLabel().setText(String.valueOf(this.dataStorage.getConsigne()) + "°C");	
-			} 
-			else {
+				this.dataStorage.getValeurConsigneLabel()
+						.setText(String.valueOf(this.dataStorage.getConsigne()) + "°C");
+			} else {
 				this.dataStorage.getValeurConsigneLabel().setText("20.0Â°C");
 				this.dataStorage.setConsigne(20.00f);
-			}	
-		}  
-		
+			}
+		}
+
 		else if (source == boutonMoins) {
-			
+
 			if (this.dataStorage.getConsigne() >= 11f) {
 				this.dataStorage.setConsigne(this.dataStorage.getConsigne() - 1f);
-				this.dataStorage.getValeurConsigneLabel().setText(String.valueOf(this.dataStorage.getConsigne()) + "°C");			
-			} 
-			else {
+				this.dataStorage.getValeurConsigneLabel()
+						.setText(String.valueOf(this.dataStorage.getConsigne()) + "°C");
+			} else {
 				this.dataStorage.getValeurConsigneLabel().setText("10.0°C");
 				this.dataStorage.setConsigne(10.00f);
-			}		
-		} 	
-	
-		
+			}
+		}
+
 		else if (source == this.dataStorage.getTexte()) {
-		
+
 			float a = Float.parseFloat(this.dataStorage.getTexte().getText());
-			
+
 			if (a > 20f) {
 				this.dataStorage.setConsigne(20.00f);
-			} 
-			else if (a < 10f) {
+			} else if (a < 10f) {
 				this.dataStorage.setConsigne(10.00f);
-			} 
-			else if ((a >= 10f) && (a <= 20f)) {
+			} else if ((a >= 10f) && (a <= 20f)) {
 				this.dataStorage.setConsigne(a);
-			} 
-			else {
+			} else {
 				System.out.println("nope");
 			}
 			this.dataStorage.getValeurConsigneLabel().setText(this.dataStorage.getConsigne() + "°C");
-		} 
-		
+		}
+
 		else if (source == boutonGraphique) {
 			SwingUtilities.invokeLater(() -> {
 				this.graphique.initUI();
 				graphique.setVisible(true);
 			});
 		}
-		
+
 		this.dataStorage.setWriteConsigne(Float.toString(this.dataStorage.getConsigne()));
 		try {
 			this.serial.writeOutput(this.dataStorage.getWriteConsigne());
@@ -153,5 +150,9 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+
+	public Graphique getGraphique() {
+		return graphique;
 	}
 }

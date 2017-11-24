@@ -1,11 +1,7 @@
 package view;
 
-import java.io.IOException;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import model.ChunksCreator;
 import model.Serial;
 
 public class ConteneurFenetre extends JPanel{
@@ -14,6 +10,7 @@ public class ConteneurFenetre extends JPanel{
 	
 	private ProprieteImage proprieteImage;
 	private ProprieteLabel proprieteLabel;
+	private ProprieteBouton proprieteBouton;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -25,11 +22,11 @@ public class ConteneurFenetre extends JPanel{
 	 * @param serial
 	 * @param dataStorage
 	 */
-	public ConteneurFenetre(Graphique graphique, ChunksCreator chunkCreator, Serial serial, DataStorage dataStorage) {
+	public ConteneurFenetre(Serial serial, DataStorage dataStorage) {
 		
 		this.setLayout(null);
 		proprieteLabel = new ProprieteLabel(dataStorage, this);
-		new ProprieteBouton(dataStorage, graphique, serial, this);
+		proprieteBouton = new ProprieteBouton(dataStorage, serial, this);
 		proprieteImage = new ProprieteImage(dataStorage, this);
 	
 	
@@ -39,6 +36,10 @@ public class ConteneurFenetre extends JPanel{
 //		dataStorage.setTemperatureExterieure(Float.parseFloat(chunkCreator.getChunks()[0]));
 //		dataStorage.setTemperatureInterieure(Float.parseFloat(chunkCreator.getChunks()[1]));
 //		dataStorage.setHumiditeActuelle(Float.parseFloat(chunkCreator.getChunks()[2]));
+	}
+
+	public ProprieteBouton getProprieteBouton() {
+		return proprieteBouton;
 	}
 
 	public ProprieteImage getProprieteImage() {

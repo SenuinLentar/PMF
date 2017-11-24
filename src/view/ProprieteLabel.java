@@ -89,7 +89,6 @@ public class ProprieteLabel extends JPanel {
 		dataStorage.getValeurTemperatureInterieurLabel().setForeground(Color.WHITE);
 		dataStorage.getValeurTemperatureInterieurLabel().setFont(dataStorage.getTemperature());
 		conteneurFenetre.add(dataStorage.getValeurTemperatureInterieurLabel());
-		System.out.println(dataStorage.getTemperatureInterieure());
 		/**
 		 * the label that displays the value of the outside temperature
 		 */

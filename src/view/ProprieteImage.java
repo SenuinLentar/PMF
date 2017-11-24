@@ -20,7 +20,7 @@ public class ProprieteImage extends JPanel {
 	private ConteneurFenetre conteneurFenetre;
 	
 	/**
-	 * The contructor ProprieteImage needs
+	 * The constructor ProprieteImage needs
 	 * 
 	 * @param dataStorage
 	 * @param conteneurFenetre
@@ -52,6 +52,7 @@ public class ProprieteImage extends JPanel {
 		conteneurFenetre.add(thermometreExterieurImage);
 
 		updateImage();
+		
 		/**
 		 * the image used for the background
 		 */
@@ -63,39 +64,37 @@ public class ProprieteImage extends JPanel {
 	}
 	
 	/**
-	 * Methode used to update the image for the ouside  temperature 
+	 * Method used to update the image for the outside  temperature 
 	 * @param dataStorage
 	 * @param conteneurFenetre
 	 */
 	public void updateImage () {
-
+		
+		thermometreInterieurImage = new JLabel();
+		
 		/**
 		 * the image used for the inside temperature 3 images for the 3 different cases
 		 * 
 		 */
 		if (this.dataStorage.getTemperatureInterieure() <= 13.0) {
-			this.thermometreInterieurImage = new JLabel(new ImageIcon("image/low.png"));
-			System.out.println(this.dataStorage.getTemperatureInterieure());
+			this.thermometreInterieurImage.setIcon(new ImageIcon("image/low.png"));
 		} 
 		
 		else if ((this.dataStorage.getTemperatureInterieure() > 13.0) && (dataStorage.getTemperatureInterieure() <= 17.0)) {
-			this.thermometreInterieurImage = new JLabel(new ImageIcon("image/great.png"));
-			System.out.println(this.dataStorage.getTemperatureInterieure());
+			this.thermometreInterieurImage.setIcon(new ImageIcon("image/great.png"));
 		} 
 		
 		else if (this.dataStorage.getTemperatureInterieure() > 17.0) {
-			this.thermometreInterieurImage = new JLabel(new ImageIcon("image/hight.png"));
-			this.thermometreInterieurImage.setBounds(30, 220, 60, 100);
-			this.conteneurFenetre.add(thermometreInterieurImage);
-			System.out.println(this.dataStorage.getTemperatureInterieure());
+			this.thermometreInterieurImage.setIcon(new ImageIcon("image/hight.png"));
 		} 
 		
 		else {
-			System.out.println("nop4");
+			System.out.println("nop");
 		}
 		
+		
 		this.thermometreInterieurImage.setBounds(30, 220, 60, 100);
-		this.conteneurFenetre.add(thermometreInterieurImage);
+		conteneurFenetre.add(thermometreInterieurImage);
 	}
 
 }
