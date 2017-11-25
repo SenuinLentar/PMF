@@ -4,7 +4,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ProprieteImage extends JPanel {
+import model.DataStorage;
+
+public class Image extends JPanel {
 
 	/**
 	 * 
@@ -30,7 +32,7 @@ public class ProprieteImage extends JPanel {
 	 * @param dataStorage
 	 * @param conteneurFenetre
 	 */
-	public ProprieteImage(DataStorage dataStorage, ConteneurFenetre conteneurFenetre) {
+	public Image(DataStorage dataStorage, Panel conteneurFenetre) {
 
 		this.dataStorage = dataStorage;
 		
@@ -84,18 +86,18 @@ public class ProprieteImage extends JPanel {
 		 * the image used for the inside temperature 3 images for the 3 different cases
 		 * 
 		 */
-		if (this.dataStorage.getTemperatureInterieure() <= 13.0) {
+		if (this.dataStorage.getInsideTemperature() <= 13.0) {
 			thermometreInterieurIcon = new ImageIcon("image/low.png");
 			this.thermometreInterieurImage.setIcon(thermometreInterieurIcon);
 			
 		} 
 		
-		else if ((this.dataStorage.getTemperatureInterieure() > 13.0) && (dataStorage.getTemperatureInterieure() <= 17.0)) {
+		else if ((this.dataStorage.getInsideTemperature() > 13.0) && (dataStorage.getInsideTemperature() <= 20.0)) {
 			thermometreInterieurIcon = new ImageIcon("image/great.png");
 			this.thermometreInterieurImage.setIcon(thermometreInterieurIcon);
 		} 
 		
-		else if (this.dataStorage.getTemperatureInterieure() > 17.0) {
+		else if (this.dataStorage.getInsideTemperature() > 20.0) {
 			thermometreInterieurIcon = new ImageIcon("image/hight.png");
 			this.thermometreInterieurImage.setIcon(thermometreInterieurIcon);
 

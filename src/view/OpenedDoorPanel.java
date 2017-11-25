@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class OuverturePortePanel extends JPanel {
+public class OpenedDoorPanel extends JPanel {
 
     /**
 	 * 
@@ -19,7 +19,7 @@ public class OuverturePortePanel extends JPanel {
     /**
      * Constructor of the class OuverturePortePanel.
      */
-    public OuverturePortePanel() {
+    public OpenedDoorPanel() {
         text = new JLabel ();
         this.text.setBounds(20, 150, 400, 50);
         this.text.setText("Porte ouverte!");

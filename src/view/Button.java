@@ -11,9 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import model.Serial;
+import model.DataStorage;
+import model.ArduinoCommunictation;
 
-public class ProprieteBouton extends JPanel implements ActionListener {
+public class Button extends JPanel implements ActionListener {
 
 	/**
 	 * Declaration of the variables used in order to create the buttons
@@ -24,9 +25,9 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 	private JButton boutonGraphique;
 
 	private DataStorage dataStorage;
-	private Graphique graphique;
+	private Graphic graphique;
 
-	private Serial serial;
+	private ArduinoCommunictation serial;
 
 	/**
 	 * the constructor needs
@@ -37,9 +38,9 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 	 * @param conteneurFenetre
 	 *            in order to create the buttons
 	 */
-	public ProprieteBouton(DataStorage dataStorage, Serial serial, ConteneurFenetre conteneurFenetre) {
+	public Button(DataStorage dataStorage, ArduinoCommunictation serial, Panel conteneurFenetre) {
 
-		graphique = new Graphique(dataStorage);
+		graphique = new Graphic(dataStorage);
 
 		/**
 		 * WE call the consttructor of dataStorage, graphique & serial
@@ -74,7 +75,7 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 		boutonGraphique = new JButton();
 		this.boutonGraphique.setText("Afficher le graphique");
 		this.boutonGraphique.setForeground(Color.darkGray);
-		this.boutonGraphique.setFont(this.dataStorage.getFmin());
+		this.boutonGraphique.setFont(this.dataStorage.getMinFont());
 		this.boutonGraphique.setBounds(350, 600, 250, 50);
 		this.boutonGraphique.addActionListener(this);
 		conteneurFenetre.add(boutonGraphique);
@@ -83,10 +84,10 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 		 * this is the field in which the user can put the order
 		 */
 		dataStorage.setTexte(new JTextField());
-		dataStorage.getTexte().setBounds(710, 260, 130, 60);
-		dataStorage.getTexte().setFont(dataStorage.getF());
-		dataStorage.getTexte().addActionListener(this);
-		conteneurFenetre.add(dataStorage.getTexte());
+		dataStorage.getTextField().setBounds(710, 260, 130, 60);
+		dataStorage.getTextField().setFont(dataStorage.getClassicFont());
+		dataStorage.getTextField().addActionListener(this);
+		conteneurFenetre.add(dataStorage.getTextField());
 
 	}
 
@@ -98,42 +99,42 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 
 		if (source == boutonPlus) {
 
-			if (this.dataStorage.getConsigne() <= 19f) {
-				this.dataStorage.setConsigne(this.dataStorage.getConsigne() + 1f);
-				this.dataStorage.getValeurConsigneLabel()
-						.setText(String.valueOf(this.dataStorage.getConsigne()) + "°C");
+			if (this.dataStorage.getOrder() <= 19f) {
+				this.dataStorage.setOrder(this.dataStorage.getOrder() + 1f);
+				this.dataStorage.getOrderLabel()
+						.setText(String.valueOf(this.dataStorage.getOrder()) + "°C");
 			} else {
-				this.dataStorage.getValeurConsigneLabel().setText("20.0°C");
-				this.dataStorage.setConsigne(20.00f);
+				this.dataStorage.getOrderLabel().setText("20.0°C");
+				this.dataStorage.setOrder(20.00f);
 			}
 		}
 
 		else if (source == boutonMoins) {
 
-			if (this.dataStorage.getConsigne() >= 11f) {
-				this.dataStorage.setConsigne(this.dataStorage.getConsigne() - 1f);
-				this.dataStorage.getValeurConsigneLabel()
-						.setText(String.valueOf(this.dataStorage.getConsigne()) + "°C");
+			if (this.dataStorage.getOrder() >= 11f) {
+				this.dataStorage.setOrder(this.dataStorage.getOrder() - 1f);
+				this.dataStorage.getOrderLabel()
+						.setText(String.valueOf(this.dataStorage.getOrder()) + "°C");
 			} else {
-				this.dataStorage.getValeurConsigneLabel().setText("10.0°C");
-				this.dataStorage.setConsigne(10.00f);
+				this.dataStorage.getOrderLabel().setText("10.0°C");
+				this.dataStorage.setOrder(10.00f);
 			}
 		}
 
-		else if (source == this.dataStorage.getTexte()) {
+		else if (source == this.dataStorage.getTextField()) {
 
-			float a = Float.parseFloat(this.dataStorage.getTexte().getText());
+			float a = Float.parseFloat(this.dataStorage.getTextField().getText());
 
 			if (a > 20f) {
-				this.dataStorage.setConsigne(20.00f);
+				this.dataStorage.setOrder(20.00f);
 			} else if (a < 10f) {
-				this.dataStorage.setConsigne(10.00f);
+				this.dataStorage.setOrder(10.00f);
 			} else if ((a >= 10f) && (a <= 20f)) {
-				this.dataStorage.setConsigne(a);
+				this.dataStorage.setOrder(a);
 			} else {
 				System.out.println("nope");
 			}
-			this.dataStorage.getValeurConsigneLabel().setText(this.dataStorage.getConsigne() + "°C");
+			this.dataStorage.getOrderLabel().setText(this.dataStorage.getOrder() + "°C");
 		}
 
 		else if (source == boutonGraphique) {
@@ -142,17 +143,15 @@ public class ProprieteBouton extends JPanel implements ActionListener {
 				graphique.setVisible(true);
 			});
 		}
-
-		this.dataStorage.setWriteConsigne(Float.toString(this.dataStorage.getConsigne()));
 		try {
-			this.serial.writeOutput(this.dataStorage.getWriteConsigne());
+			this.serial.writeOutput(Float.toString(this.dataStorage.getOrder()));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
 
-	public Graphique getGraphique() {
+	public Graphic getGraphique() {
 		return graphique;
 	}
 }

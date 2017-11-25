@@ -5,7 +5,9 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ProprieteLabel extends JPanel {
+import model.DataStorage;
+
+public class Label extends JPanel {
 
 	/**
 	 * Declaration of the variables used in order to create the labels
@@ -25,7 +27,7 @@ public class ProprieteLabel extends JPanel {
 	 * @param dataStorage
 	 * @param conteneurFenetre
 	 */
-	public ProprieteLabel(DataStorage dataStorage, ConteneurFenetre conteneurFenetre) {
+	public Label(DataStorage dataStorage, Panel conteneurFenetre) {
 
 		this.dataStorage = dataStorage;
 		
@@ -36,7 +38,7 @@ public class ProprieteLabel extends JPanel {
 		this.titreLabel.setBounds(270, 22, 400, 70);
 		this.titreLabel.setText("Pimp my fridge");
 		this.titreLabel.setForeground(Color.WHITE);
-		this.titreLabel.setFont(dataStorage.getTitre());
+		this.titreLabel.setFont(dataStorage.getTitleFont());
 		conteneurFenetre.add(titreLabel);
 
 		/**
@@ -46,7 +48,7 @@ public class ProprieteLabel extends JPanel {
 		this.temperatureInterieurLabel.setBounds(20, 150, 400, 50);
 		this.temperatureInterieurLabel.setText("Température intérieure");
 		this.temperatureInterieurLabel.setForeground(Color.WHITE);
-		this.temperatureInterieurLabel.setFont(dataStorage.getF());
+		this.temperatureInterieurLabel.setFont(dataStorage.getClassicFont());
 		conteneurFenetre.add(temperatureInterieurLabel);
 
 		/**
@@ -56,7 +58,7 @@ public class ProprieteLabel extends JPanel {
 		this.temperatureExterieurLabel.setBounds(20, 370, 400, 50);
 		this.temperatureExterieurLabel.setText("Température extérieure");
 		this.temperatureExterieurLabel.setForeground(Color.WHITE);
-		this.temperatureExterieurLabel.setFont(dataStorage.getF());
+		this.temperatureExterieurLabel.setFont(dataStorage.getClassicFont());
 		conteneurFenetre.add(temperatureExterieurLabel);
 
 		/**
@@ -66,7 +68,7 @@ public class ProprieteLabel extends JPanel {
 		this.consigneLabel.setBounds(500, 140, 300, 80); // CHANGER VALEUR
 		this.consigneLabel.setText("Consigne");
 		this.consigneLabel.setForeground(Color.WHITE);
-		this.consigneLabel.setFont(dataStorage.getF());
+		this.consigneLabel.setFont(dataStorage.getClassicFont());
 		conteneurFenetre.add(consigneLabel);
 
 		/**
@@ -76,56 +78,56 @@ public class ProprieteLabel extends JPanel {
 		this.humiditeLabel.setBounds(500, 355, 300, 80);
 		this.humiditeLabel.setText("Humidité");
 		this.humiditeLabel.setForeground(Color.WHITE);
-		this.humiditeLabel.setFont(dataStorage.getF());
+		this.humiditeLabel.setFont(dataStorage.getClassicFont());
 		conteneurFenetre.add(humiditeLabel);
 
 		/**
 		 * the label that displays the value of the inside temperature
 		 */
-		dataStorage.setValeurTemperatureInterieurLabel(new JLabel());
+		dataStorage.setInTempLabel(new JLabel());
 		dataStorage.getValeurTemperatureInterieurLabel().setBounds(160, 250, 400, 70);
 		dataStorage.getValeurTemperatureInterieurLabel()
-				.setText(String.valueOf(dataStorage.getTemperatureInterieure()) + "°C");
+				.setText(String.valueOf(dataStorage.getInsideTemperature()) + "°C");
 		dataStorage.getValeurTemperatureInterieurLabel().setForeground(Color.WHITE);
-		dataStorage.getValeurTemperatureInterieurLabel().setFont(dataStorage.getTemperature());
+		dataStorage.getValeurTemperatureInterieurLabel().setFont(dataStorage.getTempFont());
 		conteneurFenetre.add(dataStorage.getValeurTemperatureInterieurLabel());
 		/**
 		 * the label that displays the value of the outside temperature
 		 */
-		dataStorage.setValeurTemperatureExterieurLabel(new JLabel());
-		dataStorage.getValeurTemperatureExterieurLabel().setBounds(160, 400, 300, 200);
-		dataStorage.getValeurTemperatureExterieurLabel()
-				.setText(String.valueOf(dataStorage.getTemperatureExterieure()) + "°C");
-		dataStorage.getValeurTemperatureExterieurLabel().setForeground(Color.WHITE);
-		dataStorage.getValeurTemperatureExterieurLabel().setFont(dataStorage.getTemperature());
-		conteneurFenetre.add(dataStorage.getValeurTemperatureExterieurLabel());
+		dataStorage.setOutTempLabel(new JLabel());
+		dataStorage.getOutTempLabel().setBounds(160, 400, 300, 200);
+		dataStorage.getOutTempLabel()
+				.setText(String.valueOf(dataStorage.getOutsideTemperature()) + "°C");
+		dataStorage.getOutTempLabel().setForeground(Color.WHITE);
+		dataStorage.getOutTempLabel().setFont(dataStorage.getTempFont());
+		conteneurFenetre.add(dataStorage.getOutTempLabel());
 
 		/**
 		 * the label that displays the value of the order
 		 */
-		dataStorage.setValeurConsigneLabel(new JLabel());
-		dataStorage.getValeurConsigneLabel().setBounds(500, 250, 400, 70);
-		dataStorage.getValeurConsigneLabel().setText(String.valueOf(dataStorage.getConsigne()) + "°C");
-		dataStorage.getValeurConsigneLabel().setForeground(Color.WHITE);
-		dataStorage.getValeurConsigneLabel().setFont(dataStorage.getTitre());
-		conteneurFenetre.add(dataStorage.getValeurConsigneLabel());
+		dataStorage.setOrderLabel(new JLabel());
+		dataStorage.getOrderLabel().setBounds(500, 250, 400, 70);
+		dataStorage.getOrderLabel().setText(String.valueOf(dataStorage.getOrder()) + "°C");
+		dataStorage.getOrderLabel().setForeground(Color.WHITE);
+		dataStorage.getOrderLabel().setFont(dataStorage.getTitleFont());
+		conteneurFenetre.add(dataStorage.getOrderLabel());
 
 		/**
 		 * the label that displays the value of the humidity
 		 */
-		dataStorage.setValeurHumiditeLabel(new JLabel());
-		dataStorage.getValeurHumiditeLabel().setBounds(600, 450, 300, 80);
-		dataStorage.getValeurHumiditeLabel().setText(String.valueOf(dataStorage.getHumiditeActuelle()) + "%");
-		dataStorage.getValeurHumiditeLabel().setForeground(Color.WHITE);
-		dataStorage.getValeurHumiditeLabel().setFont(dataStorage.getTemperature());
-		conteneurFenetre.add(dataStorage.getValeurHumiditeLabel());
+		dataStorage.setHumidityLabel(new JLabel());
+		dataStorage.getHumidityLabel().setBounds(600, 450, 300, 80);
+		dataStorage.getHumidityLabel().setText(String.valueOf(dataStorage.getHumidity()) + "%");
+		dataStorage.getHumidityLabel().setForeground(Color.WHITE);
+		dataStorage.getHumidityLabel().setFont(dataStorage.getTempFont());
+		conteneurFenetre.add(dataStorage.getHumidityLabel());
 	}
 	
 	public void updateLabels() {
-		this.dataStorage.getValeurHumiditeLabel().setText(String.valueOf(dataStorage.getHumiditeActuelle()));
-		this.dataStorage.getValeurTemperatureExterieurLabel()
-				.setText(String.valueOf(dataStorage.getTemperatureExterieure()));
+		this.dataStorage.getHumidityLabel().setText(String.valueOf(dataStorage.getHumidity()));
+		this.dataStorage.getOutTempLabel()
+				.setText(String.valueOf(dataStorage.getOutsideTemperature()));
 		this.dataStorage.getValeurTemperatureInterieurLabel()
-				.setText(String.valueOf(dataStorage.getTemperatureInterieure()));
+				.setText(String.valueOf(dataStorage.getInsideTemperature()));
 	}
 }

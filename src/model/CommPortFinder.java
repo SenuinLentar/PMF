@@ -3,7 +3,7 @@ package model;
 import gnu.io.*;
 import java.util.Enumeration;
 
-public class CommPort {
+public class CommPortFinder {
 	private String commPort = "";
 	private CommPortIdentifier serialPortId;
 	private Enumeration enumComm;
@@ -11,7 +11,7 @@ public class CommPort {
 	/**
 	 * Constructor of the commPort class.
 	 */
-	public CommPort() {
+	public CommPortFinder() {
 		enumComm = CommPortIdentifier.getPortIdentifiers();
 		this.initialize();
 		//System.out.println(commPort);

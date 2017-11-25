@@ -7,19 +7,19 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		DataStorage dataStorage = new DataStorage();
-		CommPort commPort = new CommPort();
+		CommPortFinder commPort = new CommPortFinder();
 				
-		Serial serial = new Serial(commPort.getCommPort(), dataStorage);
+		ArduinoCommunictation serial = new ArduinoCommunictation(commPort.getCommPort(), dataStorage);
 		serial.readIntput();
 		
 		DewPoint dewPoint = new DewPoint();
 		
-		Fenetre fenetre = new Fenetre(serial, dataStorage);
-		serial.writeOutput(String.valueOf(dataStorage.getConsigne()));
+		Frame fenetre = new Frame(serial, dataStorage);
+		serial.writeOutput(String.valueOf(dataStorage.getOrder()));
 		
 		PopUp popUp = new PopUp();
 		
-		DisplayLoop loop = new DisplayLoop(dewPoint, fenetre.getConteneurFenetre().getProprieteBouton().getGraphique(), popUp, dataStorage, fenetre);
+		DisplayLoop loop = new DisplayLoop(dewPoint, fenetre.getPanel().getProprieteBouton().getGraphique(), popUp, dataStorage, fenetre);
 		loop.Loop();		
 	}
 }

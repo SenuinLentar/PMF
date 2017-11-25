@@ -4,35 +4,33 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
-import model.Serial;
+import model.DataStorage;
+import model.ArduinoCommunictation;
 
-public class Fenetre extends JFrame {
+public class Frame extends JFrame {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private ConteneurFenetre conteneurFenetre;
+	private Panel panel;
 	
 	/**
-	 * Constructor of the class Fenetre.
- 	*
-	 * @param graphique
-	 * @param chunkCreator
-	 * @param serial
+	 * Constructor of the class Frame.
+	 * 
+	 * @param arduinoCommunication
 	 * @param dataStorage
 	 * @throws IOException
 	 */
-	public Fenetre(Serial serial, DataStorage dataStorage) throws IOException {
+	public Frame(ArduinoCommunictation arduinoCommunication, DataStorage dataStorage) throws IOException {
 		this.setTitle("Projet PMF");
 		this.setSize(900, 700);
 		this.setResizable(false);	
 		this.setLocation(70,70);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setAlwaysOnTop(true);
-		conteneurFenetre = new ConteneurFenetre(serial, dataStorage);
-		this.setContentPane(conteneurFenetre);
+		panel = new Panel(arduinoCommunication, dataStorage);
+		this.setContentPane(panel);
 		//this.setUndecorated(true); // permet de retirer la barre titre de la fenetre
 		this.setVisible(true);	
 	}
@@ -42,7 +40,7 @@ public class Fenetre extends JFrame {
 	 * 
 	 * @return conteneurFenetre
 	 */
-	public ConteneurFenetre getConteneurFenetre() {
-		return conteneurFenetre;
+	public Panel getPanel() {
+		return panel;
 	}
 }

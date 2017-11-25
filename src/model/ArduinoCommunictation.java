@@ -8,12 +8,11 @@ import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
-import view.DataStorage;
 
 import java.util.Enumeration;
 import java.util.TooManyListenersException;
 
-public class Serial implements SerialPortEventListener {
+public class ArduinoCommunictation implements SerialPortEventListener {
 
 	private static SerialPort serialPort;
 	private static BufferedReader input;
@@ -30,7 +29,7 @@ public class Serial implements SerialPortEventListener {
 	 * @param chunksCreator
 	 * @throws Exception
 	 */
-	public Serial(String commPort, DataStorage dataStorage) throws Exception {
+	public ArduinoCommunictation(String commPort, DataStorage dataStorage) throws Exception {
 		this.dataStorage = dataStorage;
 		String PORT_NAMES[] = { commPort };
 		this.connection(PORT_NAMES);
@@ -79,14 +78,13 @@ public class Serial implements SerialPortEventListener {
 	 * @throws TooManyListenersException
 	 */
 	public void readIntput() throws IOException, TooManyListenersException {
-		// open the streams
 		input = new BufferedReader(new InputStreamReader(serialPort.getInputStream()));
 		serialPort.addEventListener(this);
 		serialPort.notifyOnDataAvailable(true);
 	}
 
 	/**
-	 * Write the output on the serial port, in other words, the input of the Arduino
+	 * Write the output on the serial port, in other words, the input on the Arduino
 	 * card.
 	 * 
 	 * @throws IOException
@@ -104,7 +102,7 @@ public class Serial implements SerialPortEventListener {
 			serialPort.removeEventListener();
 			serialPort.close();
 		}
-	} 
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -113,15 +111,11 @@ public class Serial implements SerialPortEventListener {
 	 */
 	public synchronized void serialEvent(SerialPortEvent oEvent) {
 		if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
-
 			try {
 				String inputLine = null;
 				if (input.ready()) {
 					inputLine = input.readLine();
 					this.dataStorage.setArray(inputLine.split("/"));
-
-					// System.out.println(chunks[0] + " \t " + chunks[1] + " \t ");
-					// System.out.println(this.chunksCreator.getChunks()[0]);
 				}
 
 			} catch (Exception e) {

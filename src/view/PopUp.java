@@ -16,7 +16,7 @@ public class PopUp extends JFrame {
 		this.setTitle("Attention !");
 		this.setSize(300, 100);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(Graphique.HIDE_ON_CLOSE);
+		this.setDefaultCloseOperation(Graphic.HIDE_ON_CLOSE);
 		this.setResizable(false);
 	}
 
@@ -35,7 +35,7 @@ public class PopUp extends JFrame {
 	 * windows visible.
 	 */
 	public void porte() {
-		OuverturePortePanel panelPorte = new OuverturePortePanel();
+		OpenedDoorPanel panelPorte = new OpenedDoorPanel();
 		this.setContentPane(panelPorte);
 		this.setVisible(true);
 	}

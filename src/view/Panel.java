@@ -2,15 +2,16 @@ package view;
 
 import javax.swing.JPanel;
 
-import model.Serial;
+import model.DataStorage;
+import model.ArduinoCommunictation;
 
-public class ConteneurFenetre extends JPanel{
+public class Panel extends JPanel{
 
 
 	
-	private ProprieteImage proprieteImage;
-	private ProprieteLabel proprieteLabel;
-	private ProprieteBouton proprieteBouton;
+	private Image proprieteImage;
+	private Label proprieteLabel;
+	private Button proprieteBouton;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -22,13 +23,13 @@ public class ConteneurFenetre extends JPanel{
 	 * @param serial
 	 * @param dataStorage
 	 */
-	public ConteneurFenetre(Serial serial, DataStorage dataStorage) {
+	public Panel(ArduinoCommunictation serial, DataStorage dataStorage) {
 		
 		this.setLayout(null);
 		
-		proprieteBouton = new ProprieteBouton(dataStorage, serial, this);
-		proprieteLabel = new ProprieteLabel(dataStorage, this);
-		proprieteImage = new ProprieteImage(dataStorage, this);
+		proprieteBouton = new Button(dataStorage, serial, this);
+		proprieteLabel = new Label(dataStorage, this);
+		proprieteImage = new Image(dataStorage, this);
 		
 		
 	
@@ -40,15 +41,15 @@ public class ConteneurFenetre extends JPanel{
 //		dataStorage.setHumiditeActuelle(Float.parseFloat(chunkCreator.getChunks()[2]));
 	}
 
-	public ProprieteBouton getProprieteBouton() {
+	public Button getProprieteBouton() {
 		return proprieteBouton;
 	}
 
-	public ProprieteImage getProprieteImage() {
+	public Image getProprieteImage() {
 		return proprieteImage;
 	}
 	
-	public ProprieteLabel getProprieteLabel() {
+	public Label getProprieteLabel() {
 		return proprieteLabel;
 	}
 

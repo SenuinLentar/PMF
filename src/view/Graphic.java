@@ -17,10 +17,12 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
+import model.DataStorage;
+
 /**
  * Class Graphique in which we fill and display the graphique
  */
-public class Graphique extends JFrame {
+public class Graphic extends JFrame {
 
 	/**
 	 * 
@@ -46,7 +48,7 @@ public class Graphique extends JFrame {
 	 * 
 	 * @param chunksCreator
 	 */
-	public Graphique(DataStorage dataStorage) {
+	public Graphic(DataStorage dataStorage) {
 		this.dataStorage = dataStorage;
 		this.graphique = new XYSeriesCollection();
 	}
@@ -64,7 +66,7 @@ public class Graphique extends JFrame {
 		add(chartPanel);
 		pack();
 		setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(Graphique.HIDE_ON_CLOSE);
+		this.setDefaultCloseOperation(Graphic.HIDE_ON_CLOSE);
 	}
 
 	public void updateGraphic() {
