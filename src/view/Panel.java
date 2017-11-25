@@ -6,20 +6,16 @@ import model.DataStorage;
 import model.ArduinoCommunictation;
 
 public class Panel extends JPanel{
-
-
 	
-	private Image proprieteImage;
-	private Label proprieteLabel;
-	private Button proprieteBouton;
+	private Image image;
+	private Label label;
+	private Button button;
 	
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * The constructor of the panel uses
 	 *
-	 * @param graphique
-	 * @param chunkCreator
 	 * @param serial
 	 * @param dataStorage
 	 */
@@ -27,30 +23,35 @@ public class Panel extends JPanel{
 		
 		this.setLayout(null);
 		
-		proprieteBouton = new Button(dataStorage, serial, this);
-		proprieteLabel = new Label(dataStorage, this);
-		proprieteImage = new Image(dataStorage, this);
-		
-		
+		button = new Button(dataStorage, serial, this);
+		label = new Label(dataStorage, this);
+		image = new Image(dataStorage, this);
+	}
+
+	/**
+	 * Getter of button.
+	 * 
+	 * @return button
+	 */
+	public Button getbButton() {
+		return button;
+	}
+
+	/**
+	 * Getter of image.
+	 * 
+	 * @return image
+	 */
+	public Image getImage() {
+		return image;
+	}
 	
-		/**
-		 * the values for the inside and outside temperature are filled with the values collected with arduino (thermistance+DHT)
-		 */
-//		dataStorage.setTemperatureExterieure(Float.parseFloat(chunkCreator.getChunks()[0]));
-//		dataStorage.setTemperatureInterieure(Float.parseFloat(chunkCreator.getChunks()[1]));
-//		dataStorage.setHumiditeActuelle(Float.parseFloat(chunkCreator.getChunks()[2]));
+	/**
+	 * Getter of label.
+	 * 
+	 * @return label
+	 */
+	public Label getLabel() {
+		return label;
 	}
-
-	public Button getProprieteBouton() {
-		return proprieteBouton;
-	}
-
-	public Image getProprieteImage() {
-		return proprieteImage;
-	}
-	
-	public Label getProprieteLabel() {
-		return proprieteLabel;
-	}
-
 }

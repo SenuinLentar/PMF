@@ -56,7 +56,7 @@ public class DisplayLoop {
 	 */
 	public void refreshData() {
 		this.dataStorage.updateData();
-		this.frame.getPanel().getProprieteLabel().updateLabels();
+		this.frame.getPanel().getLabel().updateLabels();
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class DisplayLoop {
 	 * Update the graphic's data and then the graphic's display.
 	 */
 	public void updateGraphicData() {
-		this.graphic.updateTable(this.dataStorage.getArray());
+		this.graphic.updateTable();
 		this.graphic.updateGraphic();
 	}
 
@@ -114,6 +114,6 @@ public class DisplayLoop {
 	 * Update the inside thermometer image.
 	 */
 	public void updateThermometerImage() {
-		this.frame.getPanel().getProprieteImage().updateImage();
+		this.frame.getPanel().getImage().updateImage();
 	}
 }

@@ -20,111 +20,103 @@ public class Button extends JPanel implements ActionListener {
 	 * Declaration of the variables used in order to create the buttons
 	 */
 	private static final long serialVersionUID = 1L;
-	private JButton boutonPlus;
-	private JButton boutonMoins;
-	private JButton boutonGraphique;
+	private JButton plusButton;
+	private JButton minusButton;
+	private JButton graphicButton;
 
 	private DataStorage dataStorage;
-	private Graphic graphique;
+	private Graphic graphic;
 
-	private ArduinoCommunictation serial;
+	private ArduinoCommunictation arduinoCommunication;
 
 	/**
 	 * the constructor needs
 	 * 
 	 * @param dataStorage
-	 * @param graphique
+	 * @param graphic
 	 * @param serial
-	 * @param conteneurFenetre
+	 * @param panel
 	 *            in order to create the buttons
 	 */
-	public Button(DataStorage dataStorage, ArduinoCommunictation serial, Panel conteneurFenetre) {
-
-		graphique = new Graphic(dataStorage);
-
-		/**
-		 * WE call the consttructor of dataStorage, graphique & serial
-		 */
+	public Button(DataStorage dataStorage, ArduinoCommunictation arduinoCommunication, Panel panel) {
+		graphic = new Graphic(dataStorage);
+		
 		this.dataStorage = dataStorage;
-		this.serial = serial;
+		this.arduinoCommunication = arduinoCommunication;
 
 		/**
-		 * The button with the image +
+		 * The button with the image +.
 		 */
-		boutonPlus = new JButton();
-		this.boutonPlus.setIcon(new ImageIcon("image/plus.png"));
-		this.boutonPlus.setBounds(680, 160, 80, 80);
-		this.boutonPlus.setBorderPainted(true);
-		this.boutonPlus.addActionListener(this);
-		conteneurFenetre.add(boutonPlus);
+		plusButton = new JButton();
+		this.plusButton.setIcon(new ImageIcon("image/plus.png"));
+		this.plusButton.setBounds(680, 160, 80, 80);
+		this.plusButton.setBorderPainted(true);
+		this.plusButton.addActionListener(this);
+		panel.add(plusButton);
 
 		/**
-		 * The button with the image -
+		 * The button with the image -.
 		 */
-		boutonMoins = new JButton();
-		this.boutonMoins.setIcon(new ImageIcon("image/moins.png"));
-		this.boutonMoins.setBounds(780, 160, 80, 80);
-		this.boutonMoins.setBorderPainted(false);
-		 this.boutonMoins.setBackground(null);
-		this.boutonMoins.addActionListener(this);
-		conteneurFenetre.add(boutonMoins);
+		minusButton = new JButton();
+		this.minusButton.setIcon(new ImageIcon("image/moins.png"));
+		this.minusButton.setBounds(780, 160, 80, 80);
+		this.minusButton.setBorderPainted(false);
+		 this.minusButton.setBackground(null);
+		this.minusButton.addActionListener(this);
+		panel.add(minusButton);
 
 		/**
-		 * The button with that allows us to display the graph
+		 * The button that allows us to display the graphic.
 		 */
-		boutonGraphique = new JButton();
-		this.boutonGraphique.setText("Afficher le graphique");
-		this.boutonGraphique.setForeground(Color.darkGray);
-		this.boutonGraphique.setFont(this.dataStorage.getMinFont());
-		this.boutonGraphique.setBounds(350, 600, 250, 50);
-		this.boutonGraphique.addActionListener(this);
-		conteneurFenetre.add(boutonGraphique);
+		graphicButton = new JButton();
+		this.graphicButton.setText("Afficher le graphique");
+		this.graphicButton.setForeground(Color.darkGray);
+		this.graphicButton.setFont(this.dataStorage.getMinFont());
+		this.graphicButton.setBounds(350, 600, 250, 50);
+		this.graphicButton.addActionListener(this);
+		panel.add(graphicButton);
 
 		/**
-		 * this is the field in which the user can put the order
+		 * This is the field in which the user can put the order.
 		 */
-		dataStorage.setTexte(new JTextField());
+		dataStorage.setTextField(new JTextField());
 		dataStorage.getTextField().setBounds(710, 260, 130, 60);
 		dataStorage.getTextField().setFont(dataStorage.getClassicFont());
 		dataStorage.getTextField().addActionListener(this);
-		conteneurFenetre.add(dataStorage.getTextField());
+		panel.add(dataStorage.getTextField());
 
 	}
 
 	/**
-	 * Method actionPerformed that detect when a button is pressed
+	 * Method actionPerformed that detect when a button is pressed.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 
-		if (source == boutonPlus) {
-
+		if (source == plusButton) {
 			if (this.dataStorage.getOrder() <= 19f) {
 				this.dataStorage.setOrder(this.dataStorage.getOrder() + 1f);
-				this.dataStorage.getOrderLabel()
+				this.dataStorage.getOrderValueLabel()
 						.setText(String.valueOf(this.dataStorage.getOrder()) + "°C");
 			} else {
-				this.dataStorage.getOrderLabel().setText("20.0°C");
+				this.dataStorage.getOrderValueLabel().setText("20.0°C");
 				this.dataStorage.setOrder(20.00f);
 			}
 		}
 
-		else if (source == boutonMoins) {
-
+		else if (source == minusButton) {
 			if (this.dataStorage.getOrder() >= 11f) {
 				this.dataStorage.setOrder(this.dataStorage.getOrder() - 1f);
-				this.dataStorage.getOrderLabel()
+				this.dataStorage.getOrderValueLabel()
 						.setText(String.valueOf(this.dataStorage.getOrder()) + "°C");
 			} else {
-				this.dataStorage.getOrderLabel().setText("10.0°C");
+				this.dataStorage.getOrderValueLabel().setText("10.0°C");
 				this.dataStorage.setOrder(10.00f);
 			}
 		}
 
 		else if (source == this.dataStorage.getTextField()) {
-
 			float a = Float.parseFloat(this.dataStorage.getTextField().getText());
-
 			if (a > 20f) {
 				this.dataStorage.setOrder(20.00f);
 			} else if (a < 10f) {
@@ -132,26 +124,25 @@ public class Button extends JPanel implements ActionListener {
 			} else if ((a >= 10f) && (a <= 20f)) {
 				this.dataStorage.setOrder(a);
 			} else {
-				System.out.println("nope");
+				System.out.println("Error order text field.");
 			}
-			this.dataStorage.getOrderLabel().setText(this.dataStorage.getOrder() + "°C");
+			this.dataStorage.getOrderValueLabel().setText(this.dataStorage.getOrder() + "°C");
 		}
 
-		else if (source == boutonGraphique) {
+		else if (source == graphicButton) {
 			SwingUtilities.invokeLater(() -> {
-				this.graphique.initUI();
-				graphique.setVisible(true);
+				this.graphic.initUI();
+				graphic.setVisible(true);
 			});
 		}
 		try {
-			this.serial.writeOutput(Float.toString(this.dataStorage.getOrder()));
+			this.arduinoCommunication.writeOutput(Float.toString(this.dataStorage.getOrder()));
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
 
-	public Graphic getGraphique() {
-		return graphique;
+	public Graphic getGraphic() {
+		return graphic;
 	}
 }

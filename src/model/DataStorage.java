@@ -12,11 +12,12 @@ public class DataStorage {
 	 * the fonts used The inside and outside temperature, the humidity, and the order
 	 * The variable used to stock the text entered by the user
 	 */
-
-	private Font classicFont = new Font("Calibri", Font.PLAIN, 40); // Police du texte basique
+	private Font popUpFont = new Font("Calibri", Font.BOLD, 40);
+	private Font classicFont = new Font("Calibri", Font.PLAIN, 40);
 	private Font titleFont = new Font("Calibri", Font.PLAIN, 60);
 	private Font tempFont = new Font("Calibri", Font.PLAIN, 80);
 	private Font minFont = new Font("Calibri", Font.PLAIN, 24);
+	
 	
 	private float outsideTemperature;
 	private float humidity;
@@ -25,10 +26,10 @@ public class DataStorage {
 	
 	private JTextField textField;
 	
-	private JLabel orderLabel;	
-	private JLabel inTempLabel;
-	private JLabel outTempLabel;
-	private JLabel humidityLabel;
+	private JLabel orderValueLabel;	
+	private JLabel inTempValueLabel;
+	private JLabel outTempValueLabel;
+	private JLabel humidityValueLabel;
 	
 	private String[] array = new String[4];
 
@@ -60,6 +61,15 @@ public class DataStorage {
 		return textField;
 	}
 
+	/**
+	 * Getter of the popUpFont.
+	 * 
+	 * @return popUpFont
+	 */
+	public Font getPopUpFont() {
+		return popUpFont;
+	}
+	
 	/**
 	 * Getter of the classicFont.
 	 * 
@@ -133,39 +143,40 @@ public class DataStorage {
 	}
 
 	/**
-	 * Getter of the orderLabel.
+	 * Getter of the orderValueLabel.
 	 * 
 	 * @return orderLabel
 	 */
-	public JLabel getOrderLabel() {
-		return orderLabel;
+	public JLabel getOrderValueLabel() {
+		return orderValueLabel;
 	}
 	
 	/**
-	 * Getter of inTempLabel.
+	 * Getter of inTempValueLabel.
 	 * 
-	 * @return inTempLabel
+	 * @return inTempValueLabel
 	 */
-	public JLabel getInTempLabel() {
-		return inTempLabel;
+	public JLabel getInTempValueLabel() {
+		return inTempValueLabel;
 	}
 
 	/**
-	 * Getter of outTempLabel.
+	 * Getter of outTempValueLabel.
 	 * 
-	 * @return outTempLabel
+	 * @return outTempValueLabel
 	 */
-	public JLabel getOutTempLabel() {
-		return outTempLabel;
+	public JLabel getOutTempValueLabel() {
+		return outTempValueLabel;
 	}
+	
 
 	/**
-	 * Getter of humidityLabel.
+	 * Getter of humidityValueLabel.
 	 * 
-	 * @return humidityLabel
+	 * @return humidityValueLabel
 	 */
-	public JLabel getHumidityLabel() {
-		return humidityLabel;
+	public JLabel getHumidityValueLabel() {
+		return humidityValueLabel;
 	}
 
 	/**
@@ -178,12 +189,12 @@ public class DataStorage {
 	}
 
 	/**
-	 * Setter of orderLabel.
+	 * Setter of orderValueLabel.
 	 * 
-	 * @param orderLabel
+	 * @param orderValueLabel
 	 */
-	public void setOrderLabel(JLabel orderLabel) {
-		this.orderLabel = orderLabel;
+	public void setOrderValueLabel(JLabel orderValueLabel) {
+		this.orderValueLabel = orderValueLabel;
 	}
 
 	/**
@@ -216,30 +227,30 @@ public class DataStorage {
 
 
 	/**
-	 * Setter of inTempLabel.
+	 * Setter of inTempValueLabel.
 	 * 
-	 * @param inTempLabel
+	 * @param inTempValueLabel
 	 */
-	public void setInTempLabel(JLabel inTempLabel) {
-		this.inTempLabel = inTempLabel;
+	public void setInTempValueLabel(JLabel inTempValueLabel) {
+		this.inTempValueLabel = inTempValueLabel;
 	}
 
 	/**
-	 * Setter of outTempLabel.
+	 * Setter of outTempValueLabel.
 	 * 
-	 * @param outTempLabel
+	 * @param outTempValueLabel
 	 */
-	public void setOutTempLabel(JLabel outTempLabel) {
-		this.outTempLabel = outTempLabel;
+	public void setOutTempValueLabel(JLabel outTempValueLabel) {
+		this.outTempValueLabel = outTempValueLabel;
 	}
 
 	/**
-	 * Setter of humidityLabel.
+	 * Setter of humidityValueLabel.
 	 * 
-	 * @param humidityLabel
+	 * @param humidityValueLabel
 	 */
-	public void setHumidityLabel(JLabel humidityLabel) {
-		this.humidityLabel = humidityLabel;
+	public void setHumidityValueLabel(JLabel humidityValueLabel) {
+		this.humidityValueLabel = humidityValueLabel;
 	}
 	
 	/**

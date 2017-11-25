@@ -17,9 +17,9 @@ public class Main {
 		Frame fenetre = new Frame(serial, dataStorage);
 		serial.writeOutput(String.valueOf(dataStorage.getOrder()));
 		
-		PopUp popUp = new PopUp();
+		PopUp popUp = new PopUp(dataStorage.getPopUpFont());
 		
-		DisplayLoop loop = new DisplayLoop(dewPoint, fenetre.getPanel().getProprieteBouton().getGraphique(), popUp, dataStorage, fenetre);
+		DisplayLoop loop = new DisplayLoop(dewPoint, fenetre.getPanel().getbButton().getGraphic(), popUp, dataStorage, fenetre);
 		loop.Loop();		
 	}
 }
