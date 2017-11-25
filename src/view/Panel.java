@@ -33,7 +33,7 @@ public class Panel extends JPanel{
 	 * 
 	 * @return button
 	 */
-	public Button getbButton() {
+	public Button getButton() {
 		return button;
 	}
 

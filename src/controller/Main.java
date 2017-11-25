@@ -7,8 +7,8 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		DataStorage dataStorage = new DataStorage();
-		CommPortFinder commPort = new CommPortFinder();
-				
+		
+		CommPortFinder commPort = new CommPortFinder();				
 		ArduinoCommunictation serial = new ArduinoCommunictation(commPort.getCommPort(), dataStorage);
 		serial.readIntput();
 		
@@ -19,7 +19,7 @@ public class Main {
 		
 		PopUp popUp = new PopUp(dataStorage.getPopUpFont());
 		
-		DisplayLoop loop = new DisplayLoop(dewPoint, fenetre.getPanel().getbButton().getGraphic(), popUp, dataStorage, fenetre);
+		DisplayLoop loop = new DisplayLoop(dewPoint, fenetre.getPanel().getButton().getGraphic(), popUp, dataStorage, fenetre);
 		loop.Loop();		
 	}
 }
