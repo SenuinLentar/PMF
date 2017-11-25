@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Font;
+
 import javax.swing.JFrame;
 
 public class PopUp extends JFrame {
@@ -9,14 +11,17 @@ public class PopUp extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private Font font;
+
 	/**
-	 * Constructor of the class PopUp
+	 * Constructor of the class PopUp.
 	 */
-	public PopUp() {
+	public PopUp(Font font) {
+		this.font = font;
 		this.setTitle("Attention !");
 		this.setSize(300, 100);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(Graphique.HIDE_ON_CLOSE);
+		this.setDefaultCloseOperation(Graphic.HIDE_ON_CLOSE);
 		this.setResizable(false);
 	}
 
@@ -25,18 +30,18 @@ public class PopUp extends JFrame {
 	 * windows visible.
 	 */
 	public void condensation() {
-		CondensationPanel panel = new CondensationPanel();
-		this.setContentPane(panel);
+		CondensationPanel condensationPanel = new CondensationPanel(font);
+		this.setContentPane(condensationPanel);
 		this.setVisible(true);
 	}
 
 	/**
-	 * Create a new OuverturePortePanel, set the JPanel to this JFrame and set the
+	 * Create a new OpenedDoorPanel, set the JPanel to this JFrame and set the
 	 * windows visible.
 	 */
 	public void porte() {
-		OuverturePortePanel panelPorte = new OuverturePortePanel();
-		this.setContentPane(panelPorte);
+		OpenedDoorPanel openedDoorPanel = new OpenedDoorPanel(font);
+		this.setContentPane(openedDoorPanel);
 		this.setVisible(true);
 	}
 }

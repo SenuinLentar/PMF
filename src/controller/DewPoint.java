@@ -8,7 +8,7 @@ public class DewPoint {
 	private double alpha, temp, hum;
 
 	/**
-	 * Constructor of the DewPoint class.
+	 * Calculate the dew point temperature in the fridge.
 	 * 
 	 * @param temp
 	 * @param hum

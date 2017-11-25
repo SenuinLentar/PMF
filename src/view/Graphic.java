@@ -17,44 +17,43 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import model.ChunksCreator;
+import model.DataStorage;
 
 /**
- * Class Graphique in which we fill and display the graphique
+ * Class Graphic in which we fill and display the graphic
  */
-public class Graphique extends JFrame {
+public class Graphic extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * the variable used for the graphique Two variables for two "lines" One
-	 * variable for the chart One array (two dimension) to stock the values of the
-	 * temperature inside and the humidity Create the array to stok the values
-	 * 
-	 */
-	private XYSeries temperatureInside, temperatureOutside, humidite;
-	private XYSeriesCollection graphique;
+
+	private XYSeries insideTemperature, outsideTemperature, humidity;
+	private XYSeriesCollection graphic;
 	private JFreeChart chart;
 	private XYDataset dataset;
+
 	private ChartPanel chartPanel;
+
 	private float[][] data = new float[4][10];
-	private ChunksCreator chunksCreator;
+
 	private int x = 0, time = 0;
 
+	private DataStorage dataStorage;
+
 	/**
-	 * Contructor Graphique which uses
+	 * Constructor Graphic which uses
 	 * 
 	 * @param chunksCreator
 	 */
-	public Graphique(ChunksCreator chunksCreator) {
-		this.chunksCreator = chunksCreator;
-		this.graphique = new XYSeriesCollection();
+	public Graphic(DataStorage dataStorage) {
+		this.dataStorage = dataStorage;
+		this.graphic = new XYSeriesCollection();
 	}
 
 	/**
-	 * Methode to instantiate the JFrame of the graph
+	 * Method to instantiate the JFrame of the graphic.
 	 * 
 	 */
 	public void initUI() {
@@ -66,79 +65,77 @@ public class Graphique extends JFrame {
 		add(chartPanel);
 		pack();
 		setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(Graphique.HIDE_ON_CLOSE);
+		this.setDefaultCloseOperation(Graphic.HIDE_ON_CLOSE);
 	}
 
 	public void updateGraphic() {
 		this.dataset = createDataset();
 		this.chart = createChart(dataset);
-		// this.chartPanel = new ChartPanel(chart);
 	}
 
 	/**
-	 * Method that create the Dataset and
+	 * Method that create the XYDataSet and fills the 2 variables (temperature and
+	 * humidity) with the data stored in the array (array) Then the 2 variables are
+	 * added to the XYSeriesCollection
 	 * 
-	 * @return graphique It fills the 2 variables (temperature and humidity) with
-	 *         the data stored in the array (Chunck) Then the 2 variables are added
-	 *         to the XYSeriesCollection
+	 * @return graphic
 	 */
 	public XYDataset createDataset() {
 
-		temperatureInside = new XYSeries("température intérieure(°C)");
-		humidite = new XYSeries("humidité");
-		temperatureOutside = new XYSeries("empérature extérieure(°C)");
+		insideTemperature = new XYSeries("température intérieure(°C)");
+		humidity = new XYSeries("humidité");
+		outsideTemperature = new XYSeries("température extérieure(°C)");
 
-		this.temperatureInside.clear();
-		this.temperatureOutside.clear();
-		this.humidite.clear();
-		this.graphique.removeAllSeries();
+		this.insideTemperature.clear();
+		this.outsideTemperature.clear();
+		this.humidity.clear();
+
+		this.graphic.removeAllSeries();
 
 		for (int i = 0; i < 9; i++) {
-			this.temperatureInside.add(data[3][i], data[0][i]);
-			this.humidite.add(data[3][i], data[1][i]);
-			this.temperatureOutside.add(data[3][i], data[2][i]);
+			this.outsideTemperature.add(data[3][i], data[0][i]);
+			this.insideTemperature.add(data[3][i], data[1][i]);
+			this.humidity.add(data[3][i], data[2][i]);
 		}
 
-		this.graphique.addSeries(temperatureInside);
-		this.graphique.addSeries(humidite);
-		this.graphique.addSeries(temperatureOutside);
+		this.graphic.addSeries(outsideTemperature);
+		this.graphic.addSeries(insideTemperature);
+		this.graphic.addSeries(humidity);
 
 		time++;
 
-		return graphique;
+		return graphic;
 	}
 
 	/**
-	 * Methode that update the array using
-	 * 
-	 * @param chunks
-	 *            It allows the graph to refresh by removing the first value of the
-	 *            array and by shifting all the values in the case-1
+	 * Method that update the array.
 	 */
-	public void updateTable(String[] chunks) {
+	public void updateTable() {
 		if (x < 10) {
-			data[0][x] = Float.parseFloat(this.chunksCreator.getChunks()[1]);
-			data[1][x] = Float.parseFloat(this.chunksCreator.getChunks()[2]);
-			data[2][x] = Float.parseFloat(this.chunksCreator.getChunks()[0]);
+			data[0][x] = Float.parseFloat(this.dataStorage.getArray()[0]);
+			data[1][x] = Float.parseFloat(this.dataStorage.getArray()[1]);
+			data[2][x] = Float.parseFloat(this.dataStorage.getArray()[2]);
 			data[3][x] = time;
 			x++;
-		} else {
+		}
+
+		else {
 			for (int i = 0; i < 9; i++) {
 				data[0][i] = data[0][i + 1];
 				data[1][i] = data[1][i + 1];
 				data[2][i] = data[2][i + 1];
 				data[3][i] = data[3][i + 1];
 			}
-			data[0][9] = Float.parseFloat(this.chunksCreator.getChunks()[1]);
-			data[1][9] = Float.parseFloat(this.chunksCreator.getChunks()[2]);
-			data[2][9] = Float.parseFloat(this.chunksCreator.getChunks()[0]);
+			data[0][9] = Float.parseFloat(this.dataStorage.getArray()[0]);
+			data[1][9] = Float.parseFloat(this.dataStorage.getArray()[1]);
+			data[2][9] = Float.parseFloat(this.dataStorage.getArray()[2]);
 			data[3][9] = time;
 			time++;
 		}
 	}
 
 	/**
-	 * Methode that create the chart using
+	 * Method that create the chart.
 	 * 
 	 * @param dataset
 	 * @return chart
@@ -155,10 +152,10 @@ public class Graphique extends JFrame {
 		renderer.setSeriesPaint(0, Color.RED);
 		renderer.setSeriesStroke(0, new BasicStroke(2.0f));
 
-		renderer.setSeriesPaint(1, Color.BLUE);
+		renderer.setSeriesPaint(1, Color.GREEN);
 		renderer.setSeriesStroke(1, new BasicStroke(2.0f));
 
-		renderer.setSeriesPaint(2, Color.GREEN);
+		renderer.setSeriesPaint(2, Color.BLUE);
 		renderer.setSeriesStroke(2, new BasicStroke(2.0f));
 
 		plot.setRenderer(renderer);
@@ -167,17 +164,17 @@ public class Graphique extends JFrame {
 		plot.setRangeGridlinesVisible(false);
 		plot.setDomainGridlinesVisible(false);
 
-		// Grille fond du graphique.
 		plot.setRangeGridlinesVisible(true);
 		plot.setRangeGridlinePaint(Color.BLACK);
 		plot.setDomainGridlinesVisible(true);
 		plot.setDomainGridlinePaint(Color.BLACK);
 		chart.getLegend().setFrame(BlockBorder.NONE);
+		
 		return chart;
 	}
 
 	/**
-	 * getter for the data
+	 * Getter of data.
 	 * 
 	 * @return data
 	 */
