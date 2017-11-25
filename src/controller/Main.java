@@ -15,7 +15,6 @@ public class Main {
 		DewPoint dewPoint = new DewPoint();
 		
 		Frame fenetre = new Frame(serial, dataStorage);
-		serial.writeOutput(String.valueOf(dataStorage.getOrder()));
 		
 		PopUp popUp = new PopUp(dataStorage.getPopUpFont());
 		
