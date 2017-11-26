@@ -78,17 +78,17 @@ public class Image extends JPanel {
 	 * Method used to update the image of the inside thermometer.
 	 */
 	public void updateImage() {
-		if (this.dataStorage.getInsideTemperature() <= 13.0) {
+		if (this.dataStorage.getInsideTemperature() <= this.dataStorage.getOrder()-2) {
 			inThermIcon = new ImageIcon("image/low.png");
 			this.inThermLabel.setIcon(inThermIcon);
 		}
 
-		else if ((this.dataStorage.getInsideTemperature() > 13.0) && (dataStorage.getInsideTemperature() <= 17.0)) {
+		else if ((this.dataStorage.getInsideTemperature() > this.dataStorage.getOrder()-2) && (dataStorage.getInsideTemperature() < this.dataStorage.getOrder()+2)) {
 			inThermIcon = new ImageIcon("image/great.png");
 			this.inThermLabel.setIcon(inThermIcon);
 		}
 
-		else if (this.dataStorage.getInsideTemperature() > 17.0) {
+		else if (this.dataStorage.getInsideTemperature() >= this.dataStorage.getOrder()+2) {
 			inThermIcon = new ImageIcon("image/hight.png");
 			this.inThermLabel.setIcon(inThermIcon);
 		}
