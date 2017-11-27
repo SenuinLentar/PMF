@@ -31,7 +31,7 @@ public class ArduinoCommunictation implements SerialPortEventListener {
 	 */
 	public ArduinoCommunictation(String commPort, DataStorage dataStorage) throws Exception {
 		this.dataStorage = dataStorage;
-		String PORT_NAMES[] = { commPort };
+		String PORT_NAMES = commPort;
 		this.connection(PORT_NAMES);
 	}
 
@@ -40,19 +40,17 @@ public class ArduinoCommunictation implements SerialPortEventListener {
 	 * 
 	 * @param PORT_NAMES
 	 */
-	public void connection(String PORT_NAMES[]) {
+	public void connection(String PORT_NAMES) {
 		CommPortIdentifier portId = null;
 		Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
 
 		// First, Find an instance of serial port as set in PORT_NAMES.
 		while (portEnum.hasMoreElements()) {
 			CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
-			for (String portName : PORT_NAMES) {
-				if (currPortId.getName().equals(portName)) {
+				if (currPortId.getName().equals(PORT_NAMES)) {
 					portId = currPortId;
 					break;
 				}
-			}
 		}
 		if (portId == null) {
 			System.out.println(" Could not find COM port. ");

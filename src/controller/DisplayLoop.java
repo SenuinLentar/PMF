@@ -42,7 +42,7 @@ public class DisplayLoop {
 			this.updateThermometerImage();
 			this.dewPointCalculation();
 			this.updateGraphicData();
-			// this.printData();
+			 this.printData();
 			this.dewPointTest();
 			this.doorOpenTest();
 
@@ -104,7 +104,7 @@ public class DisplayLoop {
 	 * message.
 	 */
 	public void doorOpenTest() {
-		if (this.graphic.getData()[0][9] - this.graphic.getData()[0][0] > 0.5) {
+		if (this.graphic.getData()[1][9] - this.graphic.getData()[1][0] > 0.5) {
 			// this.graphique.getData()[0][9] - this.graphique.getData()[0][8] > 5
 			this.popUp.porte();
 		}
